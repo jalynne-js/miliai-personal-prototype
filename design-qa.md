@@ -42,6 +42,31 @@
 
 final result: passed
 
+---
+
+## 강의 난이도 / PBL 보상 / 커뮤니티 상세
+
+- 검증 일시: 2026-07-29
+- 구현 화면: `/courses/` / `/projects/[slug]/` / `/projects/[slug]/mission/` / `/community/` / `/diagnosis/` / `/showcase/[slug]/`
+- 검증 항목: 강의 난이도 필터, 테마·검색 버튼 분리, PBL 팀원·동료평가 이동, 미션 제출 보상 오버레이, 커뮤니티 탭별 글과 상세 이동, 육각형 역량 표시, 쇼케이스 결과물 모달, 홈·마이페이지 실물 뱃지 노출
+- 결과: 통과. 정적 빌드가 성공했고, 기존 공개 라우팅과 완료 보상 흐름을 유지합니다.
+- 후속 P3: 실제 사용자·팀·게시글·역량 진단 데이터를 연결하면 현재의 목업 콘텐츠를 실시간 데이터로 전환할 수 있습니다.
+
+final result: passed
+
+---
+
+## 메뉴 상세 화면 / 최신 보상 정책
+
+- 검증 일시: 2026-07-29
+- 기준 자산: `miliai-reference-project-catalog.png` / `miliai-reference-learning-vod.png` / `miliai-reference-learning-pbl.png` / `miliai-reference-classroom.png` / `miliai-reference-ranking-*.png` / `mvp_rewards_rewrite.md`
+- 구현 화면: `/projects/` / `/learning/` / `/classrooms/` / `/ranking/` / `/my/credits/`
+- 검증 항목: 정적 경로의 끝 슬래시 처리 / 프로젝트 목록 / VOD·PBL 전환 / 랭킹 탭·필터·개인 순위 / 탐사 XP·Lv·뱃지·인증서 정책 문구
+- 결과: 통과. 프로젝트 카탈로그와 보상 센터의 최신 정책 문구가 렌더링되고, 콘솔 오류가 없습니다.
+- 후속 P3: 실제 API 연결 시 완료 이벤트와 중복 지급 검증은 서버 응답으로 교체합니다.
+
+final result: passed
+
 ## 2026-07-29 — AI 교관 즉시 상담
 
 ### 확인 기준
@@ -301,5 +326,31 @@ final result: passed
 ### 잔여 차이
 
 - [P3] 참고 이미지의 다중 원형 일러스트 링 대신, 제공된 병사 이미지를 원형으로 크롭해 사용했다. 화면 밀도와 영역 크기는 맞추되 이미지 자체의 충실도를 우선한 선택이며, 필요하면 다음 작업에서 장식 링을 더 정교하게 다듬을 수 있다.
+
+final result: passed
+
+---
+
+## 보상 센터 / 탐사 뱃지 컬렉션
+
+- 검증 일시: 2026-07-29
+- 기준 자산: `public/assets/badges/collection-level-1.png` ~ `collection-level-5.png`
+- 구현 화면: `/my/credits/`
+- 검증 항목: 레벨 필터 전환 / 배지 컬렉션 이미지 / 탐사 경험치 / 탐사 Lv / 탐사 인증서 / 다음 미션 이동
+- 결과: 통과. Lv.4 전환과 다음 미션 이동을 확인했으며, 콘솔 오류가 없습니다.
+- 후속 P3: 작은 화면에서 배지 컬렉션 이미지를 더 압축해 볼 수 있습니다.
+
+final result: passed
+
+---
+
+## 강의 / PBL 상세 공개 흐름
+
+- 검증 일시: 2026-07-29
+- 기준 자산: `miliai-reference-course-catalog.png` / `miliai-reference-course-detail.png` / `miliai-reference-project-detail.png`
+- 구현 화면: `/courses/` / `/courses/[slug]/` / `/projects/[slug]/`
+- 검증 항목: 강의 검색·레벨 필터·8개 콘텐츠 카드 / 강의 소개·콘텐츠·목차·보관함 / PBL 개요·3개 미션 / 로그인 없이 상세·학습 접근
+- 결과: 통과. 세 화면이 비어 있지 않은 콘텐츠로 렌더링되고, 공개 학습 CTA와 미션 링크가 작동하며 콘솔 오류가 없습니다.
+- 후속 P3: 운영 데이터 API 연결 시 강의 수·기간·콘텐츠 ID를 실제 응답으로 교체합니다.
 
 final result: passed

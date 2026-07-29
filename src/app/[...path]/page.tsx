@@ -36,6 +36,7 @@ const portalRoutes = [
   ["my", "wishlist"],
   ["my", "certificates"],
   ["my", "credit"],
+  ["my", "credits"],
   ["my", "posts"],
   ["my", "notifications"],
   ["my", "profile"],
