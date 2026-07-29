@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+html { background: #050806; scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; background: #050806; color: #f4f7f4; font-family: Arial, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+
+/* The learning portal uses a technical, frame-on-demand surface language. */
+[class*="rounded-"] { border-radius: 0 !important; }
+
+.mili-frame { position: relative; transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease, background-color .2s ease; box-shadow: 0 18px 42px rgb(0 0 0 / 28%); }
+.mili-frame.fixed { position: fixed; }
+.mili-frame::before, .mili-frame::after { content: ""; pointer-events: none; position: absolute; z-index: 1; width: 22px; height: 22px; opacity: 0; transform: scale(.72); transition: opacity .18s ease, transform .18s ease, filter .18s ease; }
+.mili-frame::before { left: -1px; top: -1px; border-left: 3px solid #b7ff31; border-top: 3px solid #b7ff31; }
+.mili-frame::after { bottom: -1px; right: -1px; border-bottom: 3px solid #b7ff31; border-right: 3px solid #b7ff31; }
+.mili-control { border-radius: 0 !important; box-shadow: 3px 3px 0 rgb(0 0 0 / 42%); }
+.mili-profile-frame::before, .mili-profile-frame::after { width: 30px; height: 30px; }
+.mili-frame:hover, .mili-frame:focus-within { border-color: rgb(183 255 49 / 65%); transform: translateY(-2px); box-shadow: inset 0 0 0 1px rgb(183 255 49 / 18%), 0 0 0 1px rgb(183 255 49 / 12%), 0 20px 48px rgb(0 0 0 / 40%), 0 0 28px rgb(183 255 49 / 10%); }
+.mili-frame:hover::before, .mili-frame:hover::after, .mili-frame:focus-within::before, .mili-frame:focus-within::after { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 6px #b7ff31); }
+.mili-hover-target { position: relative; transition: border-color .2s ease, background-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+.mili-hover-target:hover { border-color: rgb(183 255 49 / 70%) !important; background-color: rgb(183 255 49 / 8%) !important; box-shadow: inset 0 0 0 1px rgb(183 255 49 / 15%), 0 0 0 1px rgb(183 255 49 / 24%); transform: translateY(-2px); }
+button:not(.mili-control), a { transition: color .18s ease, border-color .18s ease, background-color .18s ease, transform .18s ease, box-shadow .18s ease; }
+button:not(.mili-control):hover { border-color: rgb(183 255 49 / 48%); }
+
+.mili-reward-scan { background: linear-gradient(90deg, transparent 0%, rgb(183 255 49 / 8%) 48%, transparent 52%); animation: mili-reward-scan 2.8s linear infinite; }
+.mili-reward-modal { animation: mili-reward-enter .5s cubic-bezier(.16, 1, .3, 1) both; }
+.mili-reward-corner { position: absolute; width: 28px; height: 28px; border-color: #b7ff31; filter: drop-shadow(0 0 6px rgb(183 255 49 / 75%)); }
+.mili-reward-corner-tl { left: -1px; top: -1px; border-left: 5px solid; border-top: 5px solid; }
+.mili-reward-corner-tr { right: -1px; top: -1px; border-right: 5px solid; border-top: 5px solid; }
+.mili-reward-corner-bl { bottom: -1px; left: -1px; border-bottom: 5px solid; border-left: 5px solid; }
+.mili-reward-corner-br { right: -1px; bottom: -1px; border-bottom: 5px solid; border-right: 5px solid; }
+.mili-report-label { display: flex; align-items: center; justify-content: center; gap: 14px; color: #b7ff31; font-size: 12px; font-weight: 800; letter-spacing: .18em; }
+.mili-report-label span { width: 48px; height: 1px; background: #b7ff31; box-shadow: 0 0 8px rgb(183 255 49 / 70%); }
+.mili-complete-stage { position: relative; overflow: hidden; border-top: 1px solid rgb(183 255 49 / 45%); border-bottom: 1px solid rgb(183 255 49 / 45%); background: radial-gradient(ellipse at center, rgb(183 255 49 / 11%), transparent 68%); }
+.mili-complete-stage::after { content: ""; position: absolute; inset: 0; transform: translateX(-120%); background: linear-gradient(90deg, transparent, rgb(255 255 255 / 28%), transparent); animation: mili-title-scan 1.5s .25s ease-out both; }
+.mili-mission-complete { position: relative; text-shadow: 0 0 10px rgb(183 255 49 / 38%), 0 0 38px rgb(183 255 49 / 22%); animation: mili-title-enter .7s .12s cubic-bezier(.16, 1, .3, 1) both, mili-title-glow 2s 1s ease-in-out infinite alternate; }
+.mili-reward-item { opacity: 0; animation: mili-reward-item .45s cubic-bezier(.16, 1, .3, 1) forwards; }
+@keyframes mili-reward-enter { from { opacity: 0; transform: translateY(22px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes mili-title-enter { from { opacity: 0; letter-spacing: .1em; transform: scale(.88); filter: blur(8px); } to { opacity: 1; letter-spacing: -.055em; transform: scale(1); filter: blur(0); } }
+@keyframes mili-title-scan { to { transform: translateX(120%); } }
+@keyframes mili-title-glow { from { text-shadow: 0 0 10px rgb(183 255 49 / 30%), 0 0 25px rgb(183 255 49 / 12%); } to { text-shadow: 0 0 18px rgb(183 255 49 / 70%), 0 0 48px rgb(183 255 49 / 28%); } }
+@keyframes mili-reward-item { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes mili-reward-scan { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+@media (prefers-reduced-motion: reduce) { .mili-reward-scan, .mili-reward-modal, .mili-complete-stage::after, .mili-mission-complete, .mili-reward-item { animation: none !important; } }
+
+/* Light mode / 2026-07-29 dashboard reference: warm off-white canvas, white surfaces, lime signal. */
+.mili-light { color-scheme: light; color: #1b1d1b; }
+.mili-light .text-white, .mili-light .text-black { color: #1b1d1b !important; }
+.mili-light [class*="text-white/"] { color: #6f736e !important; }
+.mili-light [class*="text-white/4"] { color: #939792 !important; }
+.mili-light [class*="text-white/5"] { color: #767a75 !important; }
+.mili-light [class*="text-white/6"] { color: #5f645f !important; }
+.mili-light [class*="text-white/7"] { color: #4b504b !important; }
+.mili-light [class*="text-[#b7ff31]"] { color: #6d9f17 !important; }
+.mili-light [class*="text-[#54c7ff]"] { color: #2f7899 !important; }
+.mili-light [class*="text-[#4ed58a]"] { color: #27834f !important; }
+.mili-light [class*="bg-[#0b110d]"], .mili-light [class*="bg-[#050806]"], .mili-light [class*="bg-[#070b08]"], .mili-light [class*="bg-[#090e0a]"], .mili-light [class*="bg-[#101610]"], .mili-light [class*="bg-[#142114]"] { background-color: #ffffff !important; }
+.mili-light [class*="bg-black"] { background-color: #f5f6f3 !important; }
+.mili-light [class*="bg-[linear-gradient"], .mili-light [class*="bg-[radial-gradient"] { background-color: #f6f8f2 !important; background-image: none !important; }
+.mili-light [class*="bg-[#b7ff31]/"] { background-color: #eef8d8 !important; }
+.mili-light [class~="bg-[#b7ff31]"] { background-color: #a9f541 !important; }
+.mili-light [class*="bg-[#54c7ff]/"] { background-color: #e7f5fb !important; }
+.mili-light [class*="bg-[#4ed58a]/"] { background-color: #e8f7ed !important; }
+.mili-light [class*="bg-[#ffb84d]/"] { background-color: #fff1dc !important; }
+.mili-light [class*="border-white"], .mili-light [class*="border-[#273128]"] { border-color: #e4e6e1 !important; }
+.mili-light [class*="border-[#b7ff31]"] { border-color: #b9e86d !important; }
+.mili-light [class*="border-[#54c7ff]"] { border-color: #b9deed !important; }
+.mili-light [class*="border-[#4ed58a]"] { border-color: #b9e6cb !important; }
+.mili-light [class*="border-[#ffb84d]"] { border-color: #f1d09d !important; }
+.mili-light .mili-frame { background-color: #ffffff; border-color: #e5e7e2; box-shadow: 0 10px 28px rgb(29 35 27 / 5%); }
+.mili-light .mili-frame:hover, .mili-light .mili-frame:focus-within { border-color: #a9f541; box-shadow: 0 14px 30px rgb(47 67 26 / 10%), 0 0 0 1px rgb(169 245 65 / 22%); }
+.mili-light h1 { text-shadow: none !important; }
+.mili-light aside.mili-frame { background: rgb(251 251 249 / 88%) !important; border-color: #e7e9e4; box-shadow: 0 12px 30px rgb(29 35 27 / 4%); }
+.mili-light aside nav button { color: #6d716d !important; }
+.mili-light aside nav button[class*="bg-[#b7ff31]"] { background-color: #eff1ed !important; border-color: transparent !important; color: #1b1d1b !important; box-shadow: inset 3px 0 0 #a9f541; }
+.mili-light aside nav button:hover { background-color: #f0f2ee !important; color: #1b1d1b !important; }
+.mili-light header { background: rgb(255 255 255 / 76%) !important; border-color: #e6e8e3 !important; }
+.mili-light button, .mili-light .mili-control { box-shadow: none !important; }
+.mili-light button:hover { box-shadow: none !important; }
+.mili-light > button[aria-label*="모드"] { background: #ffffff !important; border-color: #e4e6e1 !important; }
+.mili-light .fixed.inset-0.z-50 > aside { background: #fbfbf9 !important; border-color: #e4e6e1 !important; color: #1b1d1b; }
+.mili-light aside img[alt="MiliAI"] { filter: invert(1) saturate(.5); }
+.mili-light textarea, .mili-light input { background: #ffffff !important; color: #1b1d1b !important; }
+.mili-light ::placeholder { color: #969a95 !important; }
+.mili-badge-mark { display: grid; width: 54px; height: 54px; place-items: center; clip-path: polygon(25% 7%, 75% 7%, 100% 50%, 75% 93%, 25% 93%, 0 50%); background: linear-gradient(135deg, #fff2a8, #b88a26 58%, #564217); box-shadow: 0 8px 14px rgb(110 77 16 / 18%); color: #2a230e; font-weight: 900; }
+.mili-badge-mark[data-shape="shield"] { clip-path: polygon(50% 0, 92% 17%, 84% 73%, 50% 100%, 16% 73%, 8% 17%); }
+.mili-badge-mark[data-shape="circle"] { clip-path: circle(48%); }
+
+/* Home mission-map labels follow the supplied command-map reference. */
+.mili-home-stages { z-index: 1; }
+.mili-stage-node { position: absolute; display: flex; align-items: center; gap: 12px; color: #fff; font-size: 15px; font-weight: 650; text-shadow: 0 2px 12px rgb(0 0 0 / 85%); }
+.mili-stage-node i { width: 30px; height: 30px; border: 3px solid currentColor; box-shadow: inset 0 0 0 7px #0c0c0d; }
+.mili-stage-node small { display: block; margin-bottom: 5px; color: #a7a7a7; font-size: 12px; font-weight: 400; }
+.mili-stage-current { color: #ff9029; }
+.mili-stage-current small { color: #ff9029; }
+.mili-stage-link { position: absolute; display: block; height: 0; transform-origin: left center; border-top: 3px dotted rgb(255 255 255 / 88%); filter: drop-shadow(0 0 4px rgb(0 0 0 / 65%)); }
+.mili-stage-link-1 { left: 16%; top: 78%; width: 26%; transform: rotate(-7deg); }
+.mili-stage-link-2 { left: 50%; top: 70%; width: 14%; transform: rotate(8deg); }
+.mili-stage-link-3 { left: 72%; top: 65%; width: 14%; transform: rotate(-35deg); }
+.mili-stage-link-4 { left: 84%; top: 39%; width: 12%; transform: rotate(-38deg); }
+
+@media (min-width: 1024px) and (min-height: 900px) {
+  .mili-home-layout { display: flex; height: calc(100vh - 132px); flex-direction: column; gap: 0; overflow: hidden; }
+  .mili-home-layout > section { min-height: 0; flex: 1; }
+  .mili-home-layout > .grid:not(.hidden) { flex-shrink: 0; }
+}

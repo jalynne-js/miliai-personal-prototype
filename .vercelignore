@@ -1,0 +1,15 @@
+.next
+.git
+node_modules
+.codex
+.agents
+*.md
+*.jpg
+*.jpeg
+design-qa-comparison.png
+design-qa-comparison-cinematic.png
+public/assets/mission-mascot.png
+public/assets/mission-mascot-chroma.png
+public/assets/mission-landscape-v2.png
+public/assets/mili-reference-dashboard.png
+src/components
