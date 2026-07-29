@@ -31,7 +31,7 @@ export function HeaderContext() {
       <div className="hidden items-center gap-2 sm:flex">
         <button
           type="button"
-          aria-label="알림 2개 확인"
+          aria-label="알림 2222개 확인"
           className="relative grid size-11 place-items-center rounded-xl border border-[#29332C] bg-[#0C120E] text-[#B4BDB6] transition-colors hover:border-[#445148] hover:text-[#F4F7F4]"
         >
           <Bell className="size-[18px]" strokeWidth={1.8} />
