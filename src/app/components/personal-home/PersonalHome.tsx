@@ -162,7 +162,7 @@ function DesktopHome({ isLightMode, goTo }: PersonalHomeProps) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
   const parallaxFrameRef = useRef(0);
-  const [contentFit, setContentFit] = useState({ scale: 1, left: 0, top: 0 });
+  const [contentFit, setContentFit] = useState<{ scale: number; left: number; top: number } | null>(null);
 
   useEffect(() => {
     const viewport = viewportRef.current;
@@ -186,13 +186,6 @@ function DesktopHome({ isLightMode, goTo }: PersonalHomeProps) {
     const root = containerRef.current;
     if (!root) return;
     const cleanups: Array<() => void> = [];
-    const originalBackground = root.querySelector<HTMLElement>('[data-name="image 2542"]');
-    if (originalBackground) {
-      originalBackground.style.opacity = "0";
-      cleanups.push(() => {
-        originalBackground.style.opacity = "";
-      });
-    }
     const addClick = (element: HTMLElement, handler: () => void) => {
       element.classList.add("cursor-target");
       element.style.cursor = "pointer";
@@ -326,9 +319,10 @@ function DesktopHome({ isLightMode, goTo }: PersonalHomeProps) {
         style={{
           width: HOME_CONTENT_WIDTH,
           height: HOME_CONTENT_HEIGHT,
-          left: contentFit.left,
-          top: contentFit.top,
-          transform: `scale(${contentFit.scale})`,
+          left: contentFit?.left ?? 0,
+          top: contentFit?.top ?? 0,
+          visibility: contentFit ? "visible" : "hidden",
+          transform: `scale(${contentFit?.scale ?? 1})`,
           transformOrigin: "left top",
         }}
       >
