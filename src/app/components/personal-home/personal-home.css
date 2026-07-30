@@ -246,3 +246,11 @@
 .personal-home [class*="h-[386.398px]"][class*="w-[451.195px]"] > [class*="bg-[rgba(10,15,8"] {
   background: var(--mili-surface) !important;
 }
+
+/* The two dashboard cards sit over the live home interaction.  Use the
+   deepest Neutral surface at 80% so the pixel field remains subtly visible. */
+.personal-home.mili-dark [data-name="Article"],
+.personal-home.mili-dark [class*="h-[386.398px]"][class*="w-[451.195px]"],
+.personal-home.mili-dark .personal-mobile-card {
+  background: rgb(9 10 12 / 80%) !important;
+}
