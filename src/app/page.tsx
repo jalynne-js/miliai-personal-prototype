@@ -40,7 +40,7 @@ import {
   X,
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { type MouseEvent, useCallback, useEffect, useRef, useState } from "react";
+import { type MouseEvent, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import PersonalHome from "./components/personal-home/PersonalHome";
 import PersonalMyPage from "./components/personal-my/PersonalMyPage";
 
@@ -631,7 +631,7 @@ export default function HomePage() {
   const [isSceneFading, setIsSceneFading] = useState(false);
   const pendingPathRef = useRef<string | null>(null);
   const transitionTimerRef = useRef<number | null>(null);
-  useEffect(() => {
+  useLayoutEffect(() => {
     setIsLightMode(document.documentElement.dataset.miliTheme === "light");
     setIsThemeReady(true);
     let settleFrame = 0;
