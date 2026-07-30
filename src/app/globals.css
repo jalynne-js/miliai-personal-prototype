@@ -20,6 +20,7 @@ button:disabled { cursor: not-allowed; }
 .mili-frame.fixed { position: fixed; }
 .mili-control { border-radius: 0 !important; box-shadow: 3px 3px 0 rgb(0 0 0 / 42%); }
 .mili-frame::before, .mili-frame::after { content: none; }
+.mili-course-bookmark { border-radius: 9999px !important; }
 .mili-hover-target { position: relative; }
 .mili-nav-item, .mili-gnb-item { position: relative; transition: color .18s ease, border-color .18s ease, background-color .18s ease, opacity .18s ease; }
 .mili-nav-item::before, .mili-nav-item::after { content: ""; position: absolute; pointer-events: none; width: 13px; height: 13px; opacity: 0; transition: opacity .18s ease; }
