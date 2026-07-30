@@ -625,20 +625,29 @@ export default function HomePage() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isLightMode, setIsLightMode] = useState(false);
   const [isThemeReady, setIsThemeReady] = useState(false);
+  const [isThemeSettled, setIsThemeSettled] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isTutorOpen, setIsTutorOpen] = useState(false);
   const [isSceneFading, setIsSceneFading] = useState(false);
   const pendingPathRef = useRef<string | null>(null);
   const transitionTimerRef = useRef<number | null>(null);
   useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
-      setIsLightMode(window.localStorage.getItem("mili-theme") === "light");
-      setIsThemeReady(true);
+    setIsLightMode(document.documentElement.dataset.miliTheme === "light");
+    setIsThemeReady(true);
+    let settleFrame = 0;
+    const paintFrame = window.requestAnimationFrame(() => {
+      settleFrame = window.requestAnimationFrame(() => setIsThemeSettled(true));
     });
-    return () => window.cancelAnimationFrame(frame);
+    return () => {
+      window.cancelAnimationFrame(paintFrame);
+      window.cancelAnimationFrame(settleFrame);
+    };
   }, []);
   useEffect(() => {
-    if (isThemeReady) window.localStorage.setItem("mili-theme", isLightMode ? "light" : "dark");
+    if (!isThemeReady) return;
+    const theme = isLightMode ? "light" : "dark";
+    document.documentElement.dataset.miliTheme = theme;
+    window.localStorage.setItem("mili-theme", theme);
   }, [isLightMode, isThemeReady]);
   useEffect(() => () => {
     if (transitionTimerRef.current !== null) window.clearTimeout(transitionTimerRef.current);
@@ -685,7 +694,7 @@ export default function HomePage() {
   const activeItem = navigation.find((item) => item.key === activePage);
   const pageContent = <RouteContent pathname={pathname} goTo={goTo} openCourse={openCourse} openProject={openProject} isLightMode={isLightMode} />;
   const isImmersive = !isLightMode;
-  return <main onClickCapture={handleInternalNavigation} className={`mili-app-transition ${isSceneFading ? "mili-app-leaving" : ""} ${activePage === "home" ? `h-screen overflow-hidden ${isImmersive ? "bg-[#090e0a]" : "bg-[#edf1ec]"}` : "min-h-screen"} ${isImmersive ? "mili-dark text-white" : "mili-light text-slate-900"}`}>
+  return <main onClickCapture={handleInternalNavigation} className={`mili-app-transition ${!isThemeReady ? "mili-theme-pending" : ""} ${!isThemeSettled ? "mili-theme-initializing" : ""} ${isSceneFading ? "mili-app-leaving" : ""} ${activePage === "home" ? `h-screen overflow-hidden ${isImmersive ? "bg-[#090e0a]" : "bg-[#edf1ec]"}` : "min-h-screen"} ${isImmersive ? "mili-dark text-white" : "mili-light text-slate-900"}`}>
     {isImmersive && activePage !== "home" && <div className="fixed inset-0 z-0 bg-black" />}
     {!isImmersive && activePage !== "home" && <div className="fixed inset-0 z-0 bg-[#F7F7F7]" />}
     <aside className={`mili-frame fixed inset-y-3 left-3 z-30 hidden w-[238px] flex-col rounded-[28px] border p-4 shadow-xl backdrop-blur-xl lg:flex ${isImmersive ? "border-white/[0.14] bg-[#090e0a]/82" : "border-slate-200/80 bg-white/72"}`}>
