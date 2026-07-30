@@ -167,7 +167,8 @@ button:not(.mili-control), a { transition: color .18s ease, border-color .18s ea
 .mili-light aside.mili-lnb, .mili-light aside.mili-mobile-lnb { background: #fff !important; border-color: transparent !important; border-radius: 0 !important; box-shadow: none !important; color: #1b1d1b; }
 .mili-light aside.mili-lnb nav button, .mili-light aside.mili-mobile-lnb nav button { color: #1b1d1b !important; }
 .mili-light aside.mili-lnb nav button.mili-nav-item-active, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active { border-color: transparent !important; background-color: #eff7e7 !important; color: #6d9f17 !important; }
-.mili-light aside.mili-lnb nav button.mili-nav-item-active::before, .mili-light aside.mili-lnb nav button.mili-nav-item-active::after, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active::before, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active::after { opacity: 0 !important; }
+.mili-light aside.mili-lnb nav button.mili-nav-item-active::before, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active::before { opacity: 1 !important; }
+.mili-light aside.mili-lnb nav button.mili-nav-item-active::after, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active::after { opacity: 0 !important; }
 .mili-light aside.mili-lnb nav button:hover, .mili-light aside.mili-mobile-lnb nav button:hover { border-color: transparent !important; background-color: #eff7e7 !important; color: #6d9f17 !important; }
 .mili-light aside.mili-lnb img[alt="MiliAI"], .mili-light aside.mili-mobile-lnb img[alt="MiliAI"] { filter: invert(1) !important; }
 .mili-light header { background: transparent !important; border-color: transparent !important; }
