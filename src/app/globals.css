@@ -327,6 +327,12 @@ button:not(.mili-control), a { transition: color .18s ease, border-color .18s ea
 .mili-dark .mili-home-header {
   border-bottom: 0 !important;
 }
+.mili-dark .mili-mobile-menu-backdrop {
+  background: rgb(0 0 0 / 45%) !important;
+}
+.mili-light .mili-mobile-menu-backdrop {
+  background: rgb(0 0 0 / 22%) !important;
+}
 .mili-light .mili-page-header {
   background: #FFFFFF !important;
 }
