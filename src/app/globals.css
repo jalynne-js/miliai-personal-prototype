@@ -12,22 +12,23 @@ button, input { font: inherit; }
 button { cursor: pointer; }
 button:disabled { cursor: not-allowed; }
 
-/* The learning portal uses a technical, frame-on-demand surface language. */
+/* The learning portal uses technical navigation marks without turning every
+   content panel into an interactive frame. */
 [class*="rounded-"] { border-radius: 0 !important; }
 
-.mili-frame { position: relative; transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease, background-color .2s ease; box-shadow: 0 18px 42px rgb(0 0 0 / 28%); }
+.mili-frame { position: relative; transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease; box-shadow: 0 18px 42px rgb(0 0 0 / 28%); }
 .mili-frame.fixed { position: fixed; }
-.mili-frame::before, .mili-frame::after { content: ""; pointer-events: none; position: absolute; z-index: 1; width: 22px; height: 22px; opacity: 0; transform: scale(.72); transition: opacity .18s ease, transform .18s ease, filter .18s ease; }
-.mili-frame::before { left: -1px; top: -1px; border-left: 3px solid #b7ff31; border-top: 3px solid #b7ff31; }
-.mili-frame::after { bottom: -1px; right: -1px; border-bottom: 3px solid #b7ff31; border-right: 3px solid #b7ff31; }
 .mili-control { border-radius: 0 !important; box-shadow: 3px 3px 0 rgb(0 0 0 / 42%); }
-.mili-profile-frame::before, .mili-profile-frame::after { width: 30px; height: 30px; }
-.mili-frame:hover, .mili-frame:focus-within { border-color: rgb(183 255 49 / 65%); transform: translateY(-2px); box-shadow: inset 0 0 0 1px rgb(183 255 49 / 18%), 0 0 0 1px rgb(183 255 49 / 12%), 0 20px 48px rgb(0 0 0 / 40%), 0 0 28px rgb(183 255 49 / 10%); }
-.mili-frame:hover::before, .mili-frame:hover::after, .mili-frame:focus-within::before, .mili-frame:focus-within::after { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 6px #b7ff31); }
-.mili-hover-target { position: relative; transition: border-color .2s ease, background-color .2s ease, transform .2s ease, box-shadow .2s ease; }
-.mili-hover-target:hover { border-color: rgb(183 255 49 / 70%) !important; background-color: rgb(183 255 49 / 8%) !important; box-shadow: inset 0 0 0 1px rgb(183 255 49 / 15%), 0 0 0 1px rgb(183 255 49 / 24%); transform: translateY(-2px); }
+.mili-frame::before, .mili-frame::after { content: none; }
+.mili-course-bookmark { border-radius: 9999px !important; }
+.mili-hover-target { position: relative; }
+.mili-nav-item, .mili-gnb-item { position: relative; transition: color .18s ease, border-color .18s ease, background-color .18s ease, opacity .18s ease; }
+.mili-nav-item::before, .mili-nav-item::after { content: ""; position: absolute; pointer-events: none; width: 13px; height: 13px; opacity: 0; transition: opacity .18s ease; }
+.mili-nav-item::before { left: -1px; top: -1px; border-left: 2px solid #b7ff31; border-top: 2px solid #b7ff31; }
+.mili-nav-item::after { right: -1px; bottom: -1px; border-right: 2px solid #b7ff31; border-bottom: 2px solid #b7ff31; }
+.mili-nav-item:hover::before, .mili-nav-item:hover::after, .mili-nav-item:focus-visible::before, .mili-nav-item:focus-visible::after { opacity: 1; }
+.mili-gnb-item:hover, .mili-gnb-item:focus-visible { border-color: rgb(183 255 49 / 62%); color: #b7ff31; opacity: 1; }
 button:not(.mili-control), a { transition: color .18s ease, border-color .18s ease, background-color .18s ease, transform .18s ease, box-shadow .18s ease; }
-button:not(.mili-control):hover { border-color: rgb(183 255 49 / 48%); }
 
 .mili-reward-scan { background: linear-gradient(90deg, transparent 0%, rgb(183 255 49 / 8%) 48%, transparent 52%); animation: mili-reward-scan 2.8s linear infinite; }
 .mili-reward-modal { animation: mili-reward-enter .5s cubic-bezier(.16, 1, .3, 1) both; }
@@ -94,13 +95,12 @@ button:not(.mili-control):hover { border-color: rgb(183 255 49 / 48%); }
 .mili-light [class*="border-[#4ed58a]"] { border-color: #b9e6cb !important; }
 .mili-light [class*="border-[#ffb84d]"] { border-color: #f1d09d !important; }
 .mili-light .mili-frame { background-color: #ffffff; border-color: #e5e7e2; box-shadow: 0 10px 28px rgb(29 35 27 / 5%); }
-.mili-light .mili-frame:hover, .mili-light .mili-frame:focus-within { border-color: #a9f541; box-shadow: 0 14px 30px rgb(47 67 26 / 10%), 0 0 0 1px rgb(169 245 65 / 22%); }
 .mili-light h1 { text-shadow: none !important; }
 .mili-light aside.mili-frame { background: rgb(251 251 249 / 88%) !important; border-color: #e7e9e4; box-shadow: 0 12px 30px rgb(29 35 27 / 4%); }
 .mili-light aside nav button { color: #6d716d !important; }
 .mili-light aside nav button[class*="bg-[#b7ff31]"] { background-color: #eff1ed !important; border-color: transparent !important; color: #1b1d1b !important; box-shadow: inset 3px 0 0 #a9f541; }
 .mili-light aside nav button:hover { background-color: #f0f2ee !important; color: #1b1d1b !important; }
-.mili-light header { background: rgb(255 255 255 / 76%) !important; border-color: #e6e8e3 !important; }
+.mili-light header { background: transparent !important; border-color: transparent !important; }
 .mili-light button, .mili-light .mili-control { box-shadow: none !important; }
 .mili-light button:hover { box-shadow: none !important; }
 .mili-light > button[aria-label*="모드"] { background: #ffffff !important; border-color: #e4e6e1 !important; }
