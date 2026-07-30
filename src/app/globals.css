@@ -27,7 +27,7 @@ button:disabled { cursor: not-allowed; }
 .mili-nav-item::before, .mili-nav-item::after { content: ""; position: absolute; pointer-events: none; width: 13px; height: 13px; opacity: 0; transition: opacity .18s ease; }
 .mili-nav-item::before { left: -1px; top: -1px; border-left: 2px solid #b7ff31; border-top: 2px solid #b7ff31; }
 .mili-nav-item::after { right: -1px; bottom: -1px; border-right: 2px solid #b7ff31; border-bottom: 2px solid #b7ff31; }
-.mili-nav-item:hover::before, .mili-nav-item:hover::after, .mili-nav-item:focus-visible::before, .mili-nav-item:focus-visible::after { opacity: 1; }
+.mili-nav-item:hover::before, .mili-nav-item:hover::after, .mili-nav-item:focus-visible::before, .mili-nav-item:focus-visible::after { opacity: 0; }
 .mili-gnb-item:hover, .mili-gnb-item:focus-visible { border-color: rgb(183 255 49 / 62%); color: #b7ff31; opacity: 1; }
 button:not(.mili-control), a { transition: color .18s ease, border-color .18s ease, background-color .18s ease, transform .18s ease, box-shadow .18s ease; }
 
@@ -115,10 +115,11 @@ button:not(.mili-control), a { transition: color .18s ease, border-color .18s ea
 .mili-light [class*="border-[#ffb84d]"] { border-color: #f1d09d !important; }
 .mili-light .mili-frame { background-color: #ffffff; border-color: #e5e7e2; box-shadow: 0 10px 28px rgb(29 35 27 / 5%); }
 .mili-light h1 { text-shadow: none !important; }
-.mili-light aside.mili-frame { background: rgb(251 251 249 / 88%) !important; border-color: #e7e9e4; box-shadow: 0 12px 30px rgb(29 35 27 / 4%); }
-.mili-light aside nav button { color: #6d716d !important; }
-.mili-light aside nav button[class*="bg-[#b7ff31]"] { background-color: #eff1ed !important; border-color: transparent !important; color: #1b1d1b !important; box-shadow: inset 3px 0 0 #a9f541; }
-.mili-light aside nav button:hover { background-color: #f0f2ee !important; color: #1b1d1b !important; }
+.mili-light aside.mili-frame:not(.mili-lnb) { background: rgb(251 251 249 / 88%) !important; border-color: #e7e9e4; box-shadow: 0 12px 30px rgb(29 35 27 / 4%); }
+.mili-light aside.mili-lnb { background: #000 !important; border-color: transparent !important; box-shadow: none !important; }
+.mili-light aside.mili-lnb nav button { color: #fff !important; }
+.mili-light aside.mili-lnb nav button.mili-nav-item-active { background-color: rgb(183 255 49 / 10%) !important; border-color: #b7ff31 !important; color: #b7ff31 !important; }
+.mili-light aside.mili-lnb nav button:hover { background-color: #b7ff31 !important; border-color: #b7ff31 !important; color: #000 !important; }
 .mili-light header { background: transparent !important; border-color: transparent !important; }
 .mili-light button, .mili-light .mili-control { box-shadow: none !important; }
 .mili-light button:hover { box-shadow: none !important; }
