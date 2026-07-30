@@ -319,8 +319,8 @@ button:not(.mili-control), a { transition: color .18s ease, border-color .18s ea
 }
 
 /* Course content uses one sub-palette per card, never the action lime. */
-.mili-course-card { background: var(--mili-surface) !important; border-color: var(--mili-border) !important; }
-.mili-course-card:hover { background: var(--mili-surface-raised) !important; border-color: var(--mili-border-strong) !important; }
+.mili-course-card { background: var(--mili-surface) !important; border: 0 !important; }
+.mili-course-card:hover { background: var(--mili-surface-raised) !important; }
 .personal-home.mili-dark .mili-home-interaction-overlay { background-color: rgb(0 0 0 / 25%) !important; }
 .personal-home.mili-light .mili-home-interaction-overlay { background-color: rgb(255 255 255 / 38%) !important; }
 .mili-course-header { background: var(--course-header); }
