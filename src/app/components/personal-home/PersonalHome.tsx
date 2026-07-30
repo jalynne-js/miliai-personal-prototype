@@ -32,10 +32,10 @@ type PersonalHomeProps = {
 
 function MobileProfileCard() {
   const stats = [
-    ["연속 학습", "21", "리그 내 최고 기록!", "#ff8904"],
-    ["탐사 배지", "3", "총 10개 중", "#d99c00"],
-    ["완료 미션", "4/10", "이번 프로젝트 기준", "#6d9f17"],
-    ["누적 학습", "18h", "이번 달 총계", "#2f7899"],
+    ["연속 학습", "21", "리그 내 최고 기록!", "var(--mili-warning)"],
+    ["탐사 배지", "3", "총 10개 중", "var(--mili-warning)"],
+    ["완료 미션", "4/10", "이번 프로젝트 기준", "var(--mili-primary)"],
+    ["누적 학습", "18h", "이번 달 총계", "var(--mili-info)"],
   ];
 
   return (
@@ -345,7 +345,7 @@ export default function PersonalHome(props: PersonalHomeProps) {
   return (
     <div
       className={`personal-home relative min-h-full xl:size-full xl:overflow-hidden ${
-        props.isLightMode ? "mili-light bg-[#edf1ec] text-slate-900" : "mili-dark bg-[#0c0c0d] text-white"
+        props.isLightMode ? "mili-light bg-[var(--mili-app-bg)] text-slate-900" : "mili-dark bg-[var(--mili-app-bg)] text-white"
       }`}
     >
       <div className="pointer-events-none fixed inset-0 xl:hidden">

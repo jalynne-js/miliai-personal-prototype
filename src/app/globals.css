@@ -1,13 +1,38 @@
 @import "tailwindcss";
 
-:root { color-scheme: dark; }
+:root {
+  color-scheme: dark;
+  --mili-app-bg: #0E1013;
+  --mili-sidebar-bg: #090A0C;
+  --mili-surface: #15181C;
+  --mili-surface-raised: #1E2227;
+  --mili-surface-interactive: #2B3036;
+  --mili-text: #F8F9FA;
+  --mili-text-secondary: #ADB5BD;
+  --mili-text-muted: #868E96;
+  --mili-border: #2B3036;
+  --mili-border-strong: #3F454C;
+  --mili-primary: #B4FF39;
+  --mili-primary-strong: #C7FF68;
+  --mili-primary-bg: #2D4511;
+  --mili-primary-border: #79AB25;
+  --mili-primary-on: #18210E;
+  --mili-info: #62B6F5;
+  --mili-info-bg: #102E44;
+  --mili-success: #63D392;
+  --mili-success-bg: #163725;
+  --mili-warning: #F6B84A;
+  --mili-warning-bg: #3C2A0B;
+  --mili-error: #FF8790;
+  --mili-error-bg: #421C22;
+}
 * { box-sizing: border-box; }
-html { background: #050806; scroll-behavior: smooth; }
-body { margin: 0; min-width: 320px; background: #050806; color: #f4f7f4; font-family: Arial, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-html[data-mili-theme="light"] { color-scheme: light; background: #edf1ec; }
-html[data-mili-theme="light"] body { background: #edf1ec; color: #1b1d1b; }
-html[data-mili-theme="dark"] { color-scheme: dark; background: #050806; }
-html[data-mili-theme="dark"] body { background: #050806; color: #f4f7f4; }
+html { background: var(--mili-app-bg); scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; background: var(--mili-app-bg); color: var(--mili-text); font-family: Arial, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+html[data-mili-theme="light"] { color-scheme: light; background: #F8F9FA; }
+html[data-mili-theme="light"] body { background: #F8F9FA; color: #1E2227; }
+html[data-mili-theme="dark"] { color-scheme: dark; background: #0E1013; }
+html[data-mili-theme="dark"] body { background: #0E1013; color: #F8F9FA; }
 button, input { font: inherit; }
 button { cursor: pointer; }
 button:disabled { cursor: not-allowed; }
@@ -178,3 +203,118 @@ button:not(.mili-control), a { transition: color .18s ease, border-color .18s ea
   .mili-home-layout > section { min-height: 0; flex: 1; }
   .mili-home-layout > .grid:not(.hidden) { flex-shrink: 0; }
 }
+
+/* MILI AI Color System v1.0 -------------------------------------------------
+   The portal was originally assembled with view-level Tailwind colors.  These
+   theme-level mappings keep those views consistent while the shared semantic
+   tokens below remain the single source of truth for both themes. */
+.mili-dark {
+  color: var(--mili-text);
+  background: var(--mili-app-bg);
+}
+.mili-dark .mili-frame {
+  background-color: var(--mili-surface) !important;
+  border-color: var(--mili-border) !important;
+  box-shadow: 0 14px 34px rgb(0 0 0 / 22%);
+}
+.mili-dark [class*="bg-[#050806]"],
+.mili-dark [class*="bg-[#070b08]"],
+.mili-dark [class*="bg-[#090e0a]"] { background-color: var(--mili-app-bg) !important; }
+.mili-dark [class*="bg-[#0b110d]"],
+.mili-dark [class*="bg-[#101610]"],
+.mili-dark [class*="bg-[#141515]"] { background-color: var(--mili-surface) !important; }
+.mili-dark [class*="bg-[#161719]"],
+.mili-dark [class*="bg-[#1a1b1d]"],
+.mili-dark [class*="bg-[#111216]"] { background-color: var(--mili-surface-raised) !important; }
+.mili-dark [class*="bg-black/"] { background-color: var(--mili-app-bg) !important; }
+.mili-dark [class*="border-[#273128]"],
+.mili-dark [class*="border-white/"] { border-color: var(--mili-border) !important; }
+.mili-dark [class*="text-white/"] { color: var(--mili-text-secondary) !important; }
+.mili-dark [class*="text-white"], .mili-dark [class*="text-[#c8c8cb]"] { color: var(--mili-text) !important; }
+
+/* Lime is intentionally limited to immediate action, selection and progress. */
+.mili-dark [class*="text-[#b7ff31]"], .mili-dark [class*="text-[#b4ff39]"], .mili-dark [class*="text-[#aaff19]"] { color: var(--mili-primary) !important; }
+.mili-dark [class*="bg-[#b7ff31]"], .mili-dark [class*="bg-[#b4ff39]"], .mili-dark [class*="bg-[#aaff19]"] { background-color: var(--mili-primary) !important; color: var(--mili-primary-on) !important; }
+.mili-dark [class*="border-[#b7ff31]"], .mili-dark [class*="border-[#b4ff39]"], .mili-dark [class*="border-[#aaff19]"] { border-color: var(--mili-primary-border) !important; }
+.mili-dark [class*="text-[#54c7ff]"], .mili-dark [class*="text-[#51a2ff]"] { color: var(--mili-info) !important; }
+.mili-dark [class*="bg-[#54c7ff]/"], .mili-dark [class*="bg-[#51a2ff]/"] { background-color: var(--mili-info-bg) !important; }
+.mili-dark [class*="text-[#4ed58a]"] { color: var(--mili-success) !important; }
+.mili-dark [class*="bg-[#4ed58a]/"] { background-color: var(--mili-success-bg) !important; }
+.mili-dark [class*="text-[#ffb84d]"], .mili-dark [class*="text-[#ff8904]"] { color: var(--mili-warning) !important; }
+.mili-dark [class*="bg-[#ffb84d]/"], .mili-dark [class*="bg-[#ff8904]/"] { background-color: var(--mili-warning-bg) !important; }
+
+.mili-light {
+  --mili-app-bg: #F8F9FA;
+  --mili-sidebar-bg: #FFFFFF;
+  --mili-surface: #FFFFFF;
+  --mili-surface-raised: #FFFFFF;
+  --mili-surface-interactive: #F1F3F5;
+  --mili-text: #1E2227;
+  --mili-text-secondary: #5C636B;
+  --mili-text-muted: #868E96;
+  --mili-border: #DEE2E6;
+  --mili-border-strong: #CED4DA;
+  --mili-primary: #618F20;
+  --mili-primary-strong: #4D731B;
+  --mili-primary-bg: #E8F8C8;
+  --mili-primary-border: #94C83A;
+  --mili-primary-on: #FFFFFF;
+  --mili-info: #1B6DA8;
+  --mili-info-bg: #EFF8FF;
+  --mili-success: #237A4B;
+  --mili-success-bg: #EAF7EF;
+  --mili-warning: #A96A08;
+  --mili-warning-bg: #FFF6E5;
+  --mili-error: #BA3B45;
+  --mili-error-bg: #FFF0F1;
+  color: var(--mili-text);
+  background: var(--mili-app-bg);
+}
+.mili-light .mili-frame { background-color: var(--mili-surface) !important; border-color: var(--mili-border) !important; box-shadow: 0 10px 24px rgb(30 34 39 / 5%); }
+.mili-light [class*="bg-[#050806]"], .mili-light [class*="bg-[#070b08]"], .mili-light [class*="bg-[#090e0a]"], .mili-light [class*="bg-black/"] { background-color: var(--mili-app-bg) !important; }
+.mili-light [class*="bg-[#0b110d]"], .mili-light [class*="bg-[#101610]"], .mili-light [class*="bg-[#141515]"], .mili-light [class*="bg-[#161719]"], .mili-light [class*="bg-[#1a1b1d]"], .mili-light [class*="bg-[#111216]"] { background-color: var(--mili-surface) !important; }
+.mili-light [class*="border-white/"], .mili-light [class*="border-[#273128]"] { border-color: var(--mili-border) !important; }
+.mili-light [class*="text-white"], .mili-light [class*="text-black"], .mili-light [class*="text-[#c8c8cb]"] { color: var(--mili-text) !important; }
+.mili-light [class*="text-white/"] { color: var(--mili-text-secondary) !important; }
+.mili-light [class*="text-[#b7ff31]"], .mili-light [class*="text-[#b4ff39]"], .mili-light [class*="text-[#aaff19]"] { color: var(--mili-primary) !important; }
+.mili-light [class*="bg-[#b7ff31]"], .mili-light [class*="bg-[#b4ff39]"], .mili-light [class*="bg-[#aaff19]"] { background-color: var(--mili-primary) !important; color: var(--mili-primary-on) !important; }
+.mili-light [class*="border-[#b7ff31]"], .mili-light [class*="border-[#b4ff39]"], .mili-light [class*="border-[#aaff19]"] { border-color: var(--mili-primary-border) !important; }
+.mili-light [class*="text-[#54c7ff]"], .mili-light [class*="text-[#51a2ff]"] { color: var(--mili-info) !important; }
+.mili-light [class*="bg-[#54c7ff]/"], .mili-light [class*="bg-[#51a2ff]/"] { background-color: var(--mili-info-bg) !important; }
+.mili-light [class*="text-[#4ed58a]"] { color: var(--mili-success) !important; }
+.mili-light [class*="bg-[#4ed58a]/"] { background-color: var(--mili-success-bg) !important; }
+.mili-light [class*="text-[#ffb84d]"], .mili-light [class*="text-[#ff8904]"] { color: var(--mili-warning) !important; }
+.mili-light [class*="bg-[#ffb84d]/"], .mili-light [class*="bg-[#ff8904]/"] { background-color: var(--mili-warning-bg) !important; }
+
+.mili-light aside.mili-lnb, .mili-light aside.mili-mobile-lnb { background: var(--mili-sidebar-bg) !important; }
+.mili-light aside.mili-lnb nav button.mili-nav-item-active, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active,
+.mili-light aside.mili-lnb nav button:hover, .mili-light aside.mili-mobile-lnb nav button:hover { background-color: var(--mili-primary-bg) !important; color: var(--mili-primary-strong) !important; }
+.mili-light aside.mili-lnb nav button.mili-nav-item-active, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active { border-color: var(--mili-primary-border) !important; }
+
+.mili-nav-item { color: var(--mili-text); }
+.mili-nav-item-active { border-color: var(--mili-primary-border); background: var(--mili-primary-bg); color: var(--mili-primary); }
+.mili-nav-item:hover, .mili-nav-item:focus-visible { border-color: var(--mili-primary-border); background: var(--mili-primary); color: var(--mili-primary-on); }
+.mili-nav-item:focus-visible, .mili-gnb-item:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--mili-primary-strong); outline-offset: 2px; }
+
+/* Course content uses one sub-palette per card, never the action lime. */
+.mili-course-card { background: var(--mili-surface) !important; border-color: var(--mili-border) !important; }
+.mili-course-card:hover { background: var(--mili-surface-raised) !important; border-color: var(--mili-border-strong) !important; }
+.mili-course-bar { height: 4px; background: var(--course-accent); }
+.mili-course-accent { color: var(--course-accent) !important; }
+.mili-course-tag { border-color: color-mix(in srgb, var(--course-accent) 40%, transparent) !important; background: color-mix(in srgb, var(--course-accent) 14%, transparent) !important; color: var(--course-accent) !important; }
+.mili-course-card[data-palette="ocean"] { --course-accent: #1B6DA8; }
+.mili-course-card[data-palette="sky"] { --course-accent: #0B759F; }
+.mili-course-card[data-palette="violet"] { --course-accent: #5D3D9D; }
+.mili-course-card[data-palette="plum"] { --course-accent: #823671; }
+.mili-course-card[data-palette="coral"] { --course-accent: #A23E31; }
+.mili-course-card[data-palette="amber"] { --course-accent: #935B1B; }
+.mili-course-card[data-palette="teal"] { --course-accent: #19756D; }
+.mili-course-card[data-palette="rose"] { --course-accent: #923852; }
+.mili-dark .mili-course-card[data-palette="ocean"] { --course-accent: #62B6F5; }
+.mili-dark .mili-course-card[data-palette="sky"] { --course-accent: #59C1F2; }
+.mili-dark .mili-course-card[data-palette="violet"] { --course-accent: #AA83F2; }
+.mili-dark .mili-course-card[data-palette="plum"] { --course-accent: #D878BD; }
+.mili-dark .mili-course-card[data-palette="coral"] { --course-accent: #F68168; }
+.mili-dark .mili-course-card[data-palette="amber"] { --course-accent: #E8AC45; }
+.mili-dark .mili-course-card[data-palette="teal"] { --course-accent: #4FC5B5; }
+.mili-dark .mili-course-card[data-palette="rose"] { --course-accent: #E87894; }

@@ -201,3 +201,24 @@
     filter: none;
   }
 }
+
+/* Shared v1.0 color tokens keep the imported home interaction in step with
+   the portal instead of preserving its former green-tinted surfaces. */
+.personal-home.mili-dark .personal-mobile-card {
+  border-color: var(--mili-border);
+  background: var(--mili-surface);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 3%), 0 18px 44px rgb(0 0 0 / 20%);
+}
+.personal-home .home-progress-fill { background-color: var(--mili-primary) !important; }
+.personal-home.mili-light [data-name="Article"],
+.personal-home.mili-light .home-reveal-panel,
+.personal-home.mili-light .personal-mobile-card {
+  border-color: var(--mili-border) !important;
+  background: var(--mili-surface) !important;
+  box-shadow: 0 12px 30px rgb(30 34 39 / 5%) !important;
+}
+.personal-home.mili-light .progress-track { background: var(--mili-surface-interactive) !important; }
+.personal-home.mili-light .progress-track > div { background: var(--mili-primary) !important; box-shadow: none; }
+.personal-home.mili-light [class*="text-[#aaff19]"],
+.personal-home.mili-light [class*="text-[#AAFF19]"],
+.personal-home.mili-light [class*="text-[#b4ff39]"] { color: var(--mili-primary) !important; }
