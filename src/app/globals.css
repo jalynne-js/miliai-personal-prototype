@@ -297,22 +297,24 @@ button:not(.mili-control), a { transition: color .18s ease, border-color .18s ea
 /* Course content uses one sub-palette per card, never the action lime. */
 .mili-course-card { background: var(--mili-surface) !important; border-color: var(--mili-border) !important; }
 .mili-course-card:hover { background: var(--mili-surface-raised) !important; border-color: var(--mili-border-strong) !important; }
-.mili-course-bar { height: 4px; background: var(--course-accent); }
+.personal-home.mili-dark .mili-home-interaction-overlay { background-color: rgb(0 0 0 / 25%) !important; }
+.personal-home.mili-light .mili-home-interaction-overlay { background-color: rgb(255 255 255 / 38%) !important; }
+.mili-course-header { background: var(--course-header); }
 .mili-course-accent { color: var(--course-accent) !important; }
 .mili-course-tag { border-color: color-mix(in srgb, var(--course-accent) 40%, transparent) !important; background: color-mix(in srgb, var(--course-accent) 14%, transparent) !important; color: var(--course-accent) !important; }
-.mili-course-card[data-palette="ocean"] { --course-accent: #1B6DA8; }
-.mili-course-card[data-palette="sky"] { --course-accent: #0B759F; }
-.mili-course-card[data-palette="violet"] { --course-accent: #5D3D9D; }
-.mili-course-card[data-palette="plum"] { --course-accent: #823671; }
-.mili-course-card[data-palette="coral"] { --course-accent: #A23E31; }
-.mili-course-card[data-palette="amber"] { --course-accent: #935B1B; }
-.mili-course-card[data-palette="teal"] { --course-accent: #19756D; }
-.mili-course-card[data-palette="rose"] { --course-accent: #923852; }
-.mili-dark .mili-course-card[data-palette="ocean"] { --course-accent: #62B6F5; }
-.mili-dark .mili-course-card[data-palette="sky"] { --course-accent: #59C1F2; }
-.mili-dark .mili-course-card[data-palette="violet"] { --course-accent: #AA83F2; }
-.mili-dark .mili-course-card[data-palette="plum"] { --course-accent: #D878BD; }
-.mili-dark .mili-course-card[data-palette="coral"] { --course-accent: #F68168; }
-.mili-dark .mili-course-card[data-palette="amber"] { --course-accent: #E8AC45; }
-.mili-dark .mili-course-card[data-palette="teal"] { --course-accent: #4FC5B5; }
-.mili-dark .mili-course-card[data-palette="rose"] { --course-accent: #E87894; }
+.mili-course-card[data-palette="ocean"] { --course-accent: #1B6DA8; --course-header: #1B6DA8; }
+.mili-course-card[data-palette="sky"] { --course-accent: #0B759F; --course-header: #0B759F; }
+.mili-course-card[data-palette="violet"] { --course-accent: #5D3D9D; --course-header: #5D3D9D; }
+.mili-course-card[data-palette="plum"] { --course-accent: #823671; --course-header: #823671; }
+.mili-course-card[data-palette="coral"] { --course-accent: #A23E31; --course-header: #A23E31; }
+.mili-course-card[data-palette="amber"] { --course-accent: #935B1B; --course-header: #935B1B; }
+.mili-course-card[data-palette="teal"] { --course-accent: #19756D; --course-header: #19756D; }
+.mili-course-card[data-palette="rose"] { --course-accent: #923852; --course-header: #923852; }
+.mili-dark .mili-course-card[data-palette="ocean"] { --course-accent: #62B6F5; --course-header: #1B6DA8; }
+.mili-dark .mili-course-card[data-palette="sky"] { --course-accent: #59C1F2; --course-header: #0B759F; }
+.mili-dark .mili-course-card[data-palette="violet"] { --course-accent: #AA83F2; --course-header: #5D3D9D; }
+.mili-dark .mili-course-card[data-palette="plum"] { --course-accent: #D878BD; --course-header: #823671; }
+.mili-dark .mili-course-card[data-palette="coral"] { --course-accent: #F68168; --course-header: #A23E31; }
+.mili-dark .mili-course-card[data-palette="amber"] { --course-accent: #E8AC45; --course-header: #935B1B; }
+.mili-dark .mili-course-card[data-palette="teal"] { --course-accent: #4FC5B5; --course-header: #19756D; }
+.mili-dark .mili-course-card[data-palette="rose"] { --course-accent: #E87894; --course-header: #923852; }

@@ -313,7 +313,7 @@ function DesktopHome({ isLightMode, goTo }: PersonalHomeProps) {
           edgeFade={0}
         />
       </div>
-      <div className={`absolute inset-0 ${isLightMode ? "bg-white/38" : "bg-black/25"}`} />
+      <div className={`mili-home-interaction-overlay absolute inset-0 ${isLightMode ? "bg-white/38" : "bg-black/25"}`} />
       <div
         className="absolute overflow-hidden"
         style={{
@@ -367,7 +367,7 @@ export default function PersonalHome(props: PersonalHomeProps) {
           autoPauseOffscreen={false}
         />
       </div>
-      <div className={`pointer-events-none absolute inset-0 xl:hidden ${props.isLightMode ? "bg-white/38" : "bg-black/25"}`} />
+      <div className={`mili-home-interaction-overlay pointer-events-none absolute inset-0 xl:hidden ${props.isLightMode ? "bg-white/38" : "bg-black/25"}`} />
       <TargetCursor
         spinDuration={5}
         hideDefaultCursor

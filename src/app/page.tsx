@@ -601,8 +601,7 @@ function PublicCourseCatalog({ openCourse }: { openCourse: (title: string) => vo
     <div className="mt-9 flex flex-wrap items-center justify-between gap-4"><div className="flex flex-wrap gap-2">{["전체", "Basic(초급)", "Intermediate(중급)", "Advanced(고급)"].map(item => <button key={item} onClick={() => setLevel(item)} className={`border px-5 py-3 text-sm font-bold ${level === item ? "border-[#b7ff31] bg-[#b7ff31] text-black" : "border-white/15 text-white/58"}`}>{item}</button>)}</div><span className="border border-white/15 px-3 py-2 text-xs text-white/55">최신순</span></div>
     <div className="mt-7 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">{visible.map(course => {
       return <button key={course.code} data-palette={course.palette} onClick={() => openCourse(course.title)} className="mili-course-card mili-frame flex flex-col overflow-hidden border border-white/10 bg-[#161719] p-0 text-left transition hover:-translate-y-1 hover:border-white/25 hover:bg-[#1a1b1d]">
-        <div className="mili-course-bar" />
-        <div className="relative flex h-[76px] items-center justify-between px-5">
+        <div className="mili-course-header relative flex h-[80px] items-center justify-between px-5">
           <span className="mili-course-bookmark grid size-10 place-items-center bg-[#111216] text-white"><Bookmark size={18} /></span>
           <span className="mili-course-students inline-flex items-center gap-1 bg-[#111216] px-3 py-2 text-xs font-bold text-white"><UserRound size={15} /> {course.students}명 수강중</span>
         </div>
