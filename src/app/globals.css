@@ -1,4 +1,5 @@
 @import "tailwindcss";
+.mili-profile-frame img{border-radius:9999px!important}.mili-home-selected-avatar{display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid #b7ff3140;background:#0b110dcc;color:#b7ff31;width:max-content}.mili-home-selected-avatar small{font-size:11px;color:#b7ff31}
 
 :root { color-scheme: dark; }
 * { box-sizing: border-box; }

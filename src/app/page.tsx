@@ -110,7 +110,9 @@ const roadmapSteps = [
 ];
 
 const assetPath = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
-const profileAvatars = ["남자 1", "남자 2", "여자 1", "여자 2", "청년 1", "멘토", "고양이", "다람쥐", "강아지", "AI 로봇"];
+const profileAvatars = ["남자 1 / 20대", "남자 2 / 30대", "남자 3 / 40대", "여자 1 / 20대", "여자 2 / 30대", "여자 3 / 40대", "고양이", "다람쥐", "강아지", "AI 로봇", "여우 드론", "곰 탐사대원", "토끼 사이보그", "초록 외계인"];
+const profileEmojis = ["", "", "", "", "", "", "🐈", "🐿️", "🐕", "🤖", "🦊", "🐻", "🐰", "👽"];
+function useProfileAvatar() { const [selected, setSelected] = useState(() => typeof window === "undefined" ? 0 : Number(window.localStorage.getItem("mili-profile-avatar") ?? 0)); const choose = (index: number) => { setSelected(index); window.localStorage.setItem("mili-profile-avatar", String(index)); }; return [selected, choose] as const; }
 
 function ActionButton({ children, onClick, subtle = false, fullWidth = false }: { children: React.ReactNode; onClick?: () => void; subtle?: boolean; fullWidth?: boolean }) {
   return (
@@ -166,7 +168,7 @@ function HomeView({ goTo, isLightMode }: { goTo: (page: PageKey) => void; isLigh
   ];
   const [rankStep, setRankStep] = useState(0);
   const rankings = rankSnapshots[rankStep];
-  return <div className="mili-home-layout space-y-5 pb-4"><CharacterStrip />
+  return <div className="mili-home-layout space-y-5 pb-4"><HomeProfileAvatar />
     <section className="relative min-h-[390px] px-7 pb-8 pt-7 md:px-12 lg:min-h-[510px] lg:pt-[4.75rem]">
       <div className="relative z-10 max-w-[650px]">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#b7ff31]">학습 미션 맵</p>
@@ -218,7 +220,7 @@ function PeerReviewView() {
     { name: "이수진 하사", role: "사용자 흐름 설계", status: "평가 대기" },
     { name: "최도윤 상병", role: "화면 구현", status: "평가 완료" },
   ];
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useProfileAvatar();
   const [score, setScore] = useState(4);
   const [comment, setComment] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -316,12 +318,14 @@ function RewardCenter({ goTo }: { goTo: (page: PageKey) => void }) {
 function ProfileEditor() {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(0);
-  return <><ActionButton subtle onClick={() => setOpen(true)}><UserRound size={16} /> 프로필 편집</ActionButton>{open && <div className="fixed inset-0 z-50 grid place-items-center bg-black/75 p-5" role="dialog" aria-modal="true" aria-label="프로필 편집"><Panel className="w-full max-w-2xl p-6 shadow-2xl"><div className="flex items-start justify-between"><div><p className="text-xs font-bold tracking-[0.18em] text-[#b7ff31]">MY PROFILE</p><h2 className="mt-3 text-2xl font-bold text-white">나의 탐사대원 설정</h2><p className="mt-2 text-sm text-white/55">성별, 연령대, 동물형 캐릭터 중 원하는 모습을 선택하세요.</p></div><button onClick={() => setOpen(false)} aria-label="프로필 편집 닫기"><X /></button></div><div className="mt-6 grid grid-cols-5 gap-2">{profileAvatars.map((name, index) => <button key={name} onClick={() => setSelected(index)} className={`border p-2 text-center ${selected === index ? "border-[#b7ff31] bg-[#b7ff31]/10" : "border-white/10 bg-black/30"}`}><span className="mx-auto block aspect-square rounded-full border border-[#b7ff31]/50 bg-[url('/avatar-sprite.png')] bg-[length:500%_200%]" style={{ backgroundPosition: `${(index % 5) * 25}% ${index < 5 ? "0%" : "100%"}` }} /><b className="mt-2 block text-[10px] text-white">{name}</b></button>)}</div><button onClick={() => setOpen(false)} className="mt-6 w-full bg-[#b7ff31] px-4 py-3 text-sm font-bold text-black">프로필 저장 <ArrowRight className="inline size-4" /></button></Panel></div>}</>;
+  return <><ActionButton subtle onClick={() => setOpen(true)}><UserRound size={16} /> 프로필 편집</ActionButton>{open && <div className="fixed inset-0 z-50 grid place-items-center bg-black/75 p-5" role="dialog" aria-modal="true" aria-label="프로필 편집"><Panel className="w-full max-w-3xl p-6 shadow-2xl"><div className="flex items-start justify-between"><div><p className="text-xs font-bold tracking-[0.18em] text-[#b7ff31]">MY PROFILE</p><h2 className="mt-3 text-2xl font-bold text-white">나의 탐사대원 설정</h2><p className="mt-2 text-sm text-white/55">20~40대 탐사대원과 동물·비인간형 캐릭터 중 원하는 모습을 선택하세요.</p></div><button onClick={() => setOpen(false)} aria-label="프로필 편집 닫기"><X /></button></div><div className="mt-6 grid grid-cols-5 gap-2 sm:grid-cols-7">{profileAvatars.map((name, index) => <button key={name} onClick={() => setSelected(index)} className={`border p-2 text-center ${selected === index ? "border-[#b7ff31] bg-[#b7ff31]/10" : "border-white/10 bg-black/30"}`}><span className="mx-auto grid aspect-square place-items-center rounded-full border border-[#b7ff31]/50 bg-[url('/avatar-sprite.png')] bg-[length:500%_200%] text-2xl" style={{ backgroundPosition: `${(index % 5) * 25}% ${index < 10 ? (index < 5 ? "0%" : "100%") : "50%"}` }}>{profileEmojis[index]}</span><b className="mt-2 block text-[10px] text-white">{name}</b></button>)}</div><button onClick={() => setOpen(false)} className="mt-6 w-full bg-[#b7ff31] px-4 py-3 text-sm font-bold text-black">프로필 저장 <ArrowRight className="inline size-4" /></button></Panel></div>}</>;
 }
+
+function HomeProfileAvatar() { const [selected] = useProfileAvatar(); return <div className="mili-home-selected-avatar"><span className="grid size-16 place-items-center rounded-full border-2 border-[#b7ff31] bg-[url('/avatar-sprite.png')] bg-[length:500%_200%] text-3xl" style={{ backgroundPosition: `${(selected % 5) * 25}% ${selected < 5 ? "0%" : "100%"}` }}>{profileEmojis[selected]}</span><small>현재 캐릭터 · {profileAvatars[selected]}</small></div>; }
 
 function CharacterStrip() {
   const [selected, setSelected] = useState(0);
-  return <Panel className="p-4"><div className="flex flex-wrap items-center justify-between gap-3"><div><p className="text-xs font-bold tracking-[0.16em] text-[#b7ff31]">CHARACTER LOADOUT</p><p className="mt-1 text-sm text-white/55">탐사대원 캐릭터를 선택해 보세요</p></div><span className="text-xs font-bold text-[#b7ff31]">선택: {profileAvatars[selected]}</span></div><div className="mt-3 grid grid-cols-5 gap-2 sm:grid-cols-10">{profileAvatars.map((name, index) => <button key={name} type="button" onClick={() => setSelected(index)} aria-label={`${name} 선택`} className={`border p-1 ${selected === index ? "border-[#b7ff31] bg-[#b7ff31]/15" : "border-white/10 bg-black/30"}`}><span className="mx-auto block aspect-square rounded-full bg-[url('/avatar-sprite.png')] bg-[length:500%_200%]" style={{ backgroundPosition: `${(index % 5) * 25}% ${index < 5 ? "0%" : "100%"}` }} /><small className="mt-1 block truncate text-[9px] text-white/70">{name}</small></button>)}</div></Panel>;
+  return <Panel className="p-4"><div className="flex flex-wrap items-center justify-between gap-3"><div><p className="text-xs font-bold tracking-[0.16em] text-[#b7ff31]">CHARACTER LOADOUT</p><p className="mt-1 text-sm text-white/55">20~40대 탐사대원과 동물형 캐릭터를 선택해 보세요</p></div><span className="text-xs font-bold text-[#b7ff31]">선택: {profileAvatars[selected]}</span></div><div className="mt-3 grid grid-cols-5 gap-2 sm:grid-cols-7 lg:grid-cols-14">{profileAvatars.map((name, index) => <button key={name} type="button" onClick={() => setSelected(index)} aria-label={`${name} 선택`} className={`border p-1 ${selected === index ? "border-[#b7ff31] bg-[#b7ff31]/15" : "border-white/10 bg-black/30"}`}><span className="mx-auto grid aspect-square place-items-center rounded-full bg-[url('/avatar-sprite.png')] bg-[length:500%_200%] text-xl" style={{ backgroundPosition: `${(index % 5) * 25}% ${index < 5 ? "0%" : "100%"}` }}>{profileEmojis[index]}</span><small className="mt-1 block truncate text-[9px] text-white/70">{name}</small></button>)}</div></Panel>;
 }
 
 function MyPageView({ goTo, section, setSection, openCourse }: { goTo: (page: PageKey) => void; section: MyPageSection; setSection: (section: MyPageSection) => void; openCourse: (title: string) => void }) {
