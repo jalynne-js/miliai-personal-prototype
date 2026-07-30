@@ -7,7 +7,6 @@ import {
   Bell,
   BookOpen,
   BrainCircuit,
-  ChevronRight,
   ClipboardList,
   FolderKanban,
   GraduationCap,
