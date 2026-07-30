@@ -55,13 +55,16 @@ nav details a { display:block; margin-left:38px; padding:7px 8px; color:#8fa89b;
 /* MILI AI color system v1.0 — theme tokens and dashboard application */
 .mili-home{
   --mili-primary:#b4ff39;--mili-primary-strong:#c7ff68;--mili-primary-ink:#18210e;--mili-primary-soft:#2d4511;
-  --mili-nav-bg:#090a0c;--mili-bg:#0e1013;--mili-surface:#15181c;--mili-raised:#1e2227;--mili-fill:#2b3036;--mili-border:#2b3036;--mili-border-strong:#3f454c;
+  /* GNB uses the deepest neutral; the app canvas steps up exactly one neutral tone. */
+  --mili-gnb-bg:#090a0c;--mili-app-bg:#0e1013;
+  --mili-nav-bg:var(--mili-gnb-bg);--mili-bg:var(--mili-app-bg);--mili-surface:#15181c;--mili-raised:#1e2227;--mili-fill:#2b3036;--mili-border:#2b3036;--mili-border-strong:#3f454c;
   --mili-text:#f8f9fa;--mili-text-secondary:#adb5bd;--mili-text-muted:#868e96;--mili-shadow:rgba(0,0,0,.36);
   background:var(--mili-bg);color:var(--mili-text);
 }
 .mili-home[data-theme="light"]{
   --mili-primary:#618f20;--mili-primary-strong:#4d731b;--mili-primary-ink:#fff;--mili-primary-soft:#e8f8c8;
-  --mili-nav-bg:#fff;--mili-bg:#f8f9fa;--mili-surface:#fff;--mili-raised:#fff;--mili-fill:#f1f3f5;--mili-border:#dee2e6;--mili-border-strong:#ced4da;
+  --mili-gnb-bg:#fff;--mili-app-bg:#f8f9fa;
+  --mili-nav-bg:var(--mili-gnb-bg);--mili-bg:var(--mili-app-bg);--mili-surface:#fff;--mili-raised:#fff;--mili-fill:#f1f3f5;--mili-border:#dee2e6;--mili-border-strong:#ced4da;
   --mili-text:#1e2227;--mili-text-secondary:#5c636b;--mili-text-muted:#868e96;--mili-shadow:rgba(43,48,54,.10);
 }
 .mili-sidebar{background:var(--mili-nav-bg);border-color:var(--mili-border);box-shadow:0 22px 66px var(--mili-shadow)}
