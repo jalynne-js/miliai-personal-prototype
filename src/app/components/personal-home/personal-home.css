@@ -254,3 +254,7 @@
 .personal-home.mili-dark .personal-mobile-card {
   background: rgb(9 10 12 / 80%) !important;
 }
+.personal-home.mili-dark [data-name="Article"] > [class*="bg-[rgba(0,0,0"],
+.personal-home.mili-dark [class*="h-[386.398px]"][class*="w-[451.195px]"] > [class*="bg-[rgba(10,15,8"] {
+  background: rgb(9 10 12 / 80%) !important;
+}
