@@ -26,7 +26,7 @@ function Paragraph() {
 
 function Container() {
   return (
-    <div className="absolute content-stretch flex flex-col items-start left-[302px] top-[132px] w-[665.625px]" data-name="Container">
+    <div className="mili-home-hero absolute content-stretch flex flex-col items-start left-[302px] top-[132px] w-[665.625px]" data-name="Container">
       <Heading />
       <Paragraph />
     </div>
