@@ -294,6 +294,16 @@ button:not(.mili-control), a { transition: color .18s ease, border-color .18s ea
 .mili-nav-item:hover, .mili-nav-item:focus-visible { border-color: var(--mili-primary-border); background: var(--mili-primary); color: var(--mili-primary-on); }
 .mili-nav-item:focus-visible, .mili-gnb-item:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--mili-primary-strong); outline-offset: 2px; }
 
+/* The home controls need a quiet backdrop over the live pixel interaction. */
+.mili-dark .mili-home-header {
+  background: linear-gradient(to bottom, rgb(9 10 12 / 86%) 0%, rgb(9 10 12 / 56%) 55%, transparent 100%) !important;
+  border-bottom: 1px solid rgb(43 48 54 / 52%);
+}
+.mili-light .mili-home-header {
+  background: linear-gradient(to bottom, rgb(255 255 255 / 92%) 0%, rgb(255 255 255 / 66%) 55%, transparent 100%) !important;
+  border-bottom: 1px solid rgb(222 226 230 / 74%);
+}
+
 /* Course content uses one sub-palette per card, never the action lime. */
 .mili-course-card { background: var(--mili-surface) !important; border-color: var(--mili-border) !important; }
 .mili-course-card:hover { background: var(--mili-surface-raised) !important; border-color: var(--mili-border-strong) !important; }
