@@ -15,8 +15,11 @@ import {
   Compass,
   Code2,
   Check,
+  Clock3,
+  Building2,
   FileText,
   Gift,
+  Gauge,
   FileCheck2,
   Flame,
   FolderKanban,
@@ -574,6 +577,23 @@ const publicCourses = [
   { title: "소프트웨어 개발환경과 협업방법", field: "Python", level: "Advanced(고급)", code: "00000040", time: "6시간", students: 12, color: "bg-[#169b53]" },
 ];
 
+const courseDescriptions: Record<string, string> = {
+  "00000033": "생성형 AI를 활용해 PPT 보고서를 자동으로 작성하고 나만의 포트폴리오로 만드는 방법을 배워보세요.",
+  "00000034": "Google Flow를 활용해 실무 보고서용 영상을 기획하고 완성하는 과정을 실습합니다.",
+  "00000035": "chatGPT와 Gemini를 비교하며 업무 데이터의 핵심 내용을 더 명확하게 전달하는 방법을 익힙니다.",
+  "00000036": "LLM 결과를 검증하고 더 신뢰도 높은 답변으로 개선하는 실무 흐름을 다룹니다.",
+  "00000037": "Claude Skills의 원리와 반복 업무에 바로 적용할 수 있는 활용 방식을 배웁니다.",
+  "00000038": "업무 맥락에 맞는 프롬프트를 설계하고 결과를 다듬는 실전 방법을 연습합니다.",
+  "00000039": "인공지능의 기본 개념부터 실제 활용 사례까지 차근차근 살펴봅니다.",
+  "00000040": "개발 환경과 협업 도구를 연결해 팀의 작업 흐름을 안정적으로 만드는 방법을 익힙니다.",
+};
+
+function courseAccent(level: string) {
+  if (level.startsWith("Basic")) return "#c27b00";
+  if (level.startsWith("Intermediate")) return "#3867c8";
+  return "#7c3aad";
+}
+
 function PublicCourseCatalog({ openCourse }: { openCourse: (title: string) => void }) {
   const [query, setQuery] = useState("");
   const [level, setLevel] = useState("전체");
@@ -585,7 +605,22 @@ function PublicCourseCatalog({ openCourse }: { openCourse: (title: string) => vo
       <label className="mx-auto mt-9 flex max-w-xl border border-white/15 bg-black/25 p-1"><Search className="m-3 text-white/45" /><input value={query} onChange={event => setQuery(event.target.value)} placeholder="강의명, 과정코드로 검색" className="h-11 min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35" /></label>
     </div>
     <div className="mt-9 flex flex-wrap items-center justify-between gap-4"><div className="flex flex-wrap gap-2">{["전체", "Basic(초급)", "Intermediate(중급)", "Advanced(고급)"].map(item => <button key={item} onClick={() => setLevel(item)} className={`border px-5 py-3 text-sm font-bold ${level === item ? "border-[#b7ff31] bg-[#b7ff31] text-black" : "border-white/15 text-white/58"}`}>{item}</button>)}</div><span className="border border-white/15 px-3 py-2 text-xs text-white/55">최신순</span></div>
-    <div className="mt-7 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">{visible.map(course => <button key={course.code} onClick={() => openCourse(course.title)} className="mili-course-card mili-frame overflow-hidden border border-white/10 bg-[#0b0c0e] p-0 text-left"><div className={`relative flex h-20 items-center justify-between p-5 ${course.color}`}><span className="mili-course-bookmark grid size-10 place-items-center bg-[#111216] text-white"><Bookmark size={18} /></span><span className="inline-flex items-center gap-1 bg-[#111216] px-3 py-2 text-xs font-bold text-white"><UserRound size={15} /> {course.students}명 수강중</span></div><div className="p-5"><h2 className="min-h-12 text-base font-bold leading-6 text-white">{course.title}</h2><div className="mt-4 flex flex-wrap gap-2 text-xs"><span className="bg-white/10 px-2 py-1 text-white/70">{course.field}</span><span className="bg-white/10 px-2 py-1 text-white/70">AI</span></div><dl className="mt-5 space-y-2 text-xs text-white/56"><div className="flex justify-between"><dt>강의레벨</dt><dd className="font-bold text-[#b7ff31]">{course.level}</dd></div><div className="flex justify-between"><dt>이수시간</dt><dd className="font-bold text-white">{course.time}</dd></div><div className="flex justify-between"><dt>제공기관</dt><dd className="font-bold text-white">MiliAI 교육센터</dd></div><div className="flex justify-between"><dt>수료증</dt><dd className="font-bold text-white">제공</dd></div></dl><span className="mt-5 block w-full border border-[#b7ff31] px-4 py-2 text-center text-sm font-bold text-[#b7ff31]">신청하기</span></div></button>)}</div>
+    <div className="mt-7 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">{visible.map(course => {
+      const accent = courseAccent(course.level);
+      return <button key={course.code} onClick={() => openCourse(course.title)} className="mili-course-card mili-frame flex flex-col overflow-hidden border border-white/10 bg-[#161719] p-0 text-left transition hover:-translate-y-1 hover:border-white/25 hover:bg-[#1a1b1d]">
+        <div className="relative flex h-[80px] items-center justify-between px-5" style={{ backgroundColor: accent }}>
+          <span className="mili-course-bookmark grid size-10 place-items-center bg-[#111216] text-white"><Bookmark size={18} /></span>
+          <span className="mili-course-students inline-flex items-center gap-1 bg-[#111216] px-3 py-2 text-[11px] font-bold text-white"><UserRound size={14} /> {course.students}명 수강중</span>
+        </div>
+        <div className="flex flex-1 flex-col gap-3 p-5">
+          <h2 className="min-h-12 text-[15px] font-semibold leading-[1.35] text-white">{course.title}</h2>
+          <p className="min-h-10 text-xs leading-5 text-white/52">{courseDescriptions[course.code]}</p>
+          <div className="flex flex-wrap gap-1.5 text-[10px]"><span className="border border-white/10 bg-white/[0.06] px-2 py-1 text-white/65">{course.field}</span><span className="border border-white/10 bg-white/[0.06] px-2 py-1 text-white/65">AI</span><span className="border border-white/10 bg-white/[0.06] px-2 py-1 text-white/65">HCP</span></div>
+          <dl className="space-y-2 pt-1 text-[11px] text-[#c8c8cb]"><div className="flex items-center gap-2"><Gauge size={15} className="text-white/45" /><dt>강의레벨</dt><dd className="font-bold" style={{ color: accent }}>{course.level}</dd></div><div className="flex items-center gap-2"><Clock3 size={15} className="text-white/45" /><dt>이수시간</dt><dd>{course.time}</dd></div><div className="flex items-center gap-2"><Building2 size={15} className="text-white/45" /><dt>제공기관</dt><dd>MiliAI 교육센터</dd></div><div className="flex items-center gap-2"><BadgeCheck size={15} className="text-white/45" /><dt>수료증</dt><dd>제공</dd></div></dl>
+          <div className="mt-auto flex justify-end pt-1"><span className="border px-4 py-2 text-[11px] font-semibold transition-colors hover:bg-[#b7ff31] hover:text-[#111214]" style={{ borderColor: "#b7ff31", color: "#b7ff31" }}>신청하기</span></div>
+        </div>
+      </button>;
+    })}</div>
     {visible.length === 0 && <EmptyState title="검색 결과가 없습니다" copy="다른 강의명 또는 과정코드로 다시 검색해 주세요." />}
   </>;
 }
