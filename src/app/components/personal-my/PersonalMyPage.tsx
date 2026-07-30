@@ -40,7 +40,7 @@ export default function PersonalMyPage({ isLightMode, onGoTo }: PersonalMyPagePr
     ["0.0%", "평균 진도율"], ["0", "수료증"], ["5", "보유 크레딧"],
   ];
 
-  return <div className="mx-auto max-w-[960px] pb-10">
+  return <div className="mili-entry-page mx-auto max-w-[960px] pb-10">
     <section className={`border p-5 md:p-6 ${surface} rounded-2xl`}>
       <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
         <div className="relative size-16 shrink-0 overflow-hidden rounded-full border-2 border-[#aaff19]/30 bg-black md:size-[72px]">
