@@ -141,6 +141,7 @@ button:not(.mili-control), a { transition: color .18s ease, border-color .18s ea
 .mili-light h1 { text-shadow: none !important; }
 .mili-light aside.mili-frame:not(.mili-lnb) { background: rgb(251 251 249 / 88%) !important; border-color: #e7e9e4; box-shadow: 0 12px 30px rgb(29 35 27 / 4%); }
 .mili-light aside.mili-lnb { background: #000 !important; border-color: transparent !important; box-shadow: none !important; }
+.mili-light aside.mili-lnb, .mili-light aside.mili-mobile-lnb { border-radius: 0 !important; }
 .mili-light aside.mili-lnb nav button { color: #fff !important; }
 .mili-light aside.mili-lnb nav button.mili-nav-item-active { border-color: rgb(180 255 57 / 32%) !important; background-color: rgb(180 255 57 / 10%) !important; color: #b4ff39 !important; }
 .mili-light aside.mili-lnb nav button:hover { border-color: #b4ff39 !important; background-color: #b4ff39 !important; color: #111214 !important; }
