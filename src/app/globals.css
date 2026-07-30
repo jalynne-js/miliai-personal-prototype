@@ -41,14 +41,14 @@ button:disabled { cursor: not-allowed; }
   border: 0;
   opacity: 1;
   background:
-    linear-gradient(#b4ff39, #b4ff39) left top / 22px 2px no-repeat,
-    linear-gradient(#b4ff39, #b4ff39) left top / 2px 22px no-repeat,
-    linear-gradient(#b4ff39, #b4ff39) right top / 22px 2px no-repeat,
-    linear-gradient(#b4ff39, #b4ff39) right top / 2px 22px no-repeat,
-    linear-gradient(#b4ff39, #b4ff39) left bottom / 22px 2px no-repeat,
-    linear-gradient(#b4ff39, #b4ff39) left bottom / 2px 22px no-repeat,
-    linear-gradient(#b4ff39, #b4ff39) right bottom / 22px 2px no-repeat,
-    linear-gradient(#b4ff39, #b4ff39) right bottom / 2px 22px no-repeat;
+    linear-gradient(#b4ff39, #b4ff39) left top / 14px 2px no-repeat,
+    linear-gradient(#b4ff39, #b4ff39) left top / 2px 14px no-repeat,
+    linear-gradient(#b4ff39, #b4ff39) right top / 14px 2px no-repeat,
+    linear-gradient(#b4ff39, #b4ff39) right top / 2px 14px no-repeat,
+    linear-gradient(#b4ff39, #b4ff39) left bottom / 14px 2px no-repeat,
+    linear-gradient(#b4ff39, #b4ff39) left bottom / 2px 14px no-repeat,
+    linear-gradient(#b4ff39, #b4ff39) right bottom / 14px 2px no-repeat,
+    linear-gradient(#b4ff39, #b4ff39) right bottom / 2px 14px no-repeat;
 }
 .mili-nav-item-active::after { opacity: 0; }
 .mili-nav-item:hover::before, .mili-nav-item:hover::after, .mili-nav-item:focus-visible::before, .mili-nav-item:focus-visible::after { opacity: 0; }
