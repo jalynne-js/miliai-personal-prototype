@@ -793,7 +793,7 @@ export default function HomePage() {
   const activeItem = navigation.find((item) => item.key === activePage);
   const pageContent = <RouteContent pathname={pathname} goTo={goTo} openCourse={openCourse} openProject={openProject} isLightMode={isLightMode} />;
   const isImmersive = !isLightMode;
-  return <main onClickCapture={handleInternalNavigation} className={`mili-app-transition ${!isThemeReady ? "mili-theme-pending" : ""} ${!isThemeSettled ? "mili-theme-initializing" : ""} ${isSceneFading ? "mili-app-leaving" : ""} ${activePage === "home" ? `h-screen overflow-hidden ${isImmersive ? "bg-[#090e0a]" : "bg-[#edf1ec]"}` : "min-h-screen"} ${isImmersive ? "mili-dark text-white" : "mili-light text-slate-900"}`}>
+  return <main onClickCapture={handleInternalNavigation} className={`mili-app-transition ${!isThemeReady ? "mili-theme-pending" : ""} ${!isThemeSettled ? "mili-theme-initializing" : ""} ${isSceneFading ? "mili-app-leaving" : ""} ${activePage === "home" ? `h-screen overflow-hidden ${isImmersive ? "bg-[#090e0a]" : "bg-[#f7f7f7]"}` : "min-h-screen"} ${isImmersive ? "mili-dark text-white" : "mili-light text-slate-900"}`}>
     {isImmersive && activePage !== "home" && <div className="fixed inset-0 z-0 bg-black" />}
     {!isImmersive && activePage !== "home" && <div className="fixed inset-0 z-0 bg-[#F7F7F7]" />}
     <aside className="mili-frame mili-lnb fixed inset-y-0 left-0 z-30 hidden w-[271px] flex-col border-0 bg-black lg:flex">
