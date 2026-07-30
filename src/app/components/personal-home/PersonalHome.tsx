@@ -186,13 +186,6 @@ function DesktopHome({ isLightMode, goTo }: PersonalHomeProps) {
     const root = containerRef.current;
     if (!root) return;
     const cleanups: Array<() => void> = [];
-    const originalBackground = root.querySelector<HTMLElement>('[data-name="image 2542"]');
-    if (originalBackground) {
-      originalBackground.style.opacity = "0";
-      cleanups.push(() => {
-        originalBackground.style.opacity = "";
-      });
-    }
     const addClick = (element: HTMLElement, handler: () => void) => {
       element.classList.add("cursor-target");
       element.style.cursor = "pointer";

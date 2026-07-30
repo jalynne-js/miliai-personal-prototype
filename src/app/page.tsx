@@ -40,7 +40,7 @@ import {
   X,
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { type MouseEvent, useCallback, useEffect, useRef, useState } from "react";
 import PersonalHome from "./components/personal-home/PersonalHome";
 import PersonalMyPage from "./components/personal-my/PersonalMyPage";
 
@@ -627,6 +627,9 @@ export default function HomePage() {
   const [isThemeReady, setIsThemeReady] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isTutorOpen, setIsTutorOpen] = useState(false);
+  const [isSceneFading, setIsSceneFading] = useState(false);
+  const pendingPathRef = useRef<string | null>(null);
+  const transitionTimerRef = useRef<number | null>(null);
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
       setIsLightMode(window.localStorage.getItem("mili-theme") === "light");
@@ -637,13 +640,45 @@ export default function HomePage() {
   useEffect(() => {
     if (isThemeReady) window.localStorage.setItem("mili-theme", isLightMode ? "light" : "dark");
   }, [isLightMode, isThemeReady]);
-  const goTo = (page: PageKey) => { router.push(pagePaths[page]); setMobileOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); };
-  const openCourse = (title: string) => { router.push(`/courses/${slugify(title)}`); setMobileOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); };
-  const openProject = (title: string) => { router.push(`/projects/${slugify(title)}`); setMobileOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  useEffect(() => () => {
+    if (transitionTimerRef.current !== null) window.clearTimeout(transitionTimerRef.current);
+  }, []);
+  const navigateTo = useCallback((href: string) => {
+    if (href === pathname || transitionTimerRef.current !== null) return;
+    pendingPathRef.current = href;
+    setMobileOpen(false);
+    setIsSceneFading(true);
+    transitionTimerRef.current = window.setTimeout(() => {
+      transitionTimerRef.current = null;
+      router.push(href);
+    }, 170);
+  }, [pathname, router]);
+  useEffect(() => {
+    if (!pendingPathRef.current) return;
+    pendingPathRef.current = null;
+    const frame = window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: "auto" });
+      setIsSceneFading(false);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [pathname]);
+  const handleInternalNavigation = (event: MouseEvent<HTMLElement>) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const anchor = target.closest<HTMLAnchorElement>('a[href]');
+    const href = anchor?.getAttribute("href");
+    if (!anchor || !href || !href.startsWith("/") || href.startsWith("//") || anchor.target === "_blank" || anchor.hasAttribute("download")) return;
+    event.preventDefault();
+    navigateTo(href);
+  };
+  const goTo = (page: PageKey) => navigateTo(pagePaths[page]);
+  const openCourse = (title: string) => navigateTo(`/courses/${slugify(title)}`);
+  const openProject = (title: string) => navigateTo(`/projects/${slugify(title)}`);
   const activeItem = navigation.find((item) => item.key === activePage);
   const pageContent = <RouteContent pathname={pathname} goTo={goTo} openCourse={openCourse} openProject={openProject} isLightMode={isLightMode} />;
   const isImmersive = !isLightMode;
-  return <main className={`${activePage === "home" ? `h-screen overflow-hidden ${isImmersive ? "bg-[#090e0a]" : "bg-[#edf1ec]"}` : "min-h-screen"} ${isImmersive ? "mili-dark text-white" : "mili-light text-slate-900"}`}>
+  return <main onClickCapture={handleInternalNavigation} className={`mili-app-transition ${isSceneFading ? "mili-app-leaving" : ""} ${activePage === "home" ? `h-screen overflow-hidden ${isImmersive ? "bg-[#090e0a]" : "bg-[#edf1ec]"}` : "min-h-screen"} ${isImmersive ? "mili-dark text-white" : "mili-light text-slate-900"}`}>
     {isImmersive && activePage !== "home" && <div className="fixed inset-0 z-0 bg-black" />}
     {!isImmersive && activePage !== "home" && <div className="fixed inset-0 z-0 bg-[#F7F7F7]" />}
     <aside className={`mili-frame fixed inset-y-3 left-3 z-30 hidden w-[238px] flex-col rounded-[28px] border p-4 shadow-xl backdrop-blur-xl lg:flex ${isImmersive ? "border-white/[0.14] bg-[#090e0a]/82" : "border-slate-200/80 bg-white/72"}`}>
@@ -658,7 +693,7 @@ export default function HomePage() {
     {mobileOpen && <div className="fixed inset-0 z-50 bg-black/70 lg:hidden"><aside className="h-full w-[280px] border-r border-white/10 bg-[#090e0a] p-4 shadow-2xl"><div className="flex items-center justify-between px-2 py-4"><Image src={assetPath("/assets/mili-logo.png")} alt="MiliAI" width={120} height={44} className="h-auto w-[120px]" /><button onClick={() => setMobileOpen(false)} aria-label="메뉴 닫기"><X /></button></div><nav className="mt-5 space-y-1">{navigation.map(item => { const Icon = item.icon; return <button key={item.key} onClick={() => goTo(item.key)} className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-bold ${activePage === item.key ? "bg-[#b7ff31] text-black" : "text-white/65"}`}><Icon size={18} />{item.label}</button>})}</nav></aside></div>}
     <div key={pathname} className={activePage === "home"
       ? "relative z-10 h-[calc(100vh-65px)] overflow-y-auto lg:ml-[262px] xl:overflow-hidden"
-      : "mili-page-reveal relative z-10 mx-auto max-w-[1460px] px-5 py-7 lg:ml-[262px] lg:px-8 lg:py-10"
+      : "relative z-10 mx-auto max-w-[1460px] px-5 py-7 lg:ml-[262px] lg:px-8 lg:py-10"
     }>{pageContent}</div>
     {isTutorOpen && <TutorChatDialog onClose={() => setIsTutorOpen(false)} />}
     {selectedItem && <div className="fixed inset-0 z-50 grid place-items-center bg-black/75 p-5" role="dialog" aria-modal="true" aria-label="학습 상세"><Panel className="w-full max-w-lg p-6 shadow-2xl"><div className="flex items-start justify-between gap-5"><div><p className="text-xs font-bold tracking-[0.16em] text-[#b7ff31]">학습 상세</p><h2 className="mt-3 text-2xl font-bold leading-8 text-white">{selectedItem}</h2></div><button aria-label="닫기" onClick={() => setSelectedItem(null)} className="text-white/60 hover:text-white"><X /></button></div><p className="mt-5 text-sm leading-6 text-white/58">학습 목표, 진행 현황, 자료와 퀴즈를 한 화면에서 이어갈 수 있는 상세 학습 공간입니다.</p><div className="mt-6 grid grid-cols-3 gap-2 text-center text-xs"><span className="rounded-xl bg-white/[0.06] p-3 text-white/60">영상<br /><b className="mt-1 block text-white">18분</b></span><span className="rounded-xl bg-white/[0.06] p-3 text-white/60">실습<br /><b className="mt-1 block text-white">1개</b></span><span className="rounded-xl bg-white/[0.06] p-3 text-white/60">퀴즈<br /><b className="mt-1 block text-white">3문항</b></span></div><div className="mt-6 flex gap-3"><ActionButton onClick={() => { setSelectedItem(null); goTo(selectedItem.includes("프로젝트") || selectedItem === "동료 평가" ? "projects" : "courses"); }}><Play size={16} /> 시작하기</ActionButton><ActionButton subtle onClick={() => setSelectedItem(null)}>나중에 보기</ActionButton></div></Panel></div>}

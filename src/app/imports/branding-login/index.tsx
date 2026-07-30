@@ -1,5 +1,4 @@
 import svgPaths from "./svg-6mc43d5pkl";
-import imgImage2542 from "./2469702d1c965d44bc1a26e0f8da8adb8dbbaf9b.png";
 const profileImage = "/profile-soldier.png";
 
 function Heading() {
@@ -1910,13 +1909,6 @@ function Group8() {
 export default function B() {
   return (
     <div className="relative size-full" data-name="브랜딩 B 로그인 후">
-      <div className="absolute flex h-[1080px] items-center justify-center left-0 top-0 w-[1919px]">
-        <div className="-scale-y-100 flex-none rotate-180">
-          <div className="h-[1080px] relative w-[1919px]" data-name="image 2542">
-            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage2542.src} />
-          </div>
-        </div>
-      </div>
       <Container />
       <Header />
       <Article />
