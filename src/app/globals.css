@@ -289,6 +289,12 @@ button:not(.mili-control), a { transition: color .18s ease, border-color .18s ea
 .mili-light aside.mili-lnb nav button:hover, .mili-light aside.mili-mobile-lnb nav button:hover { background-color: var(--mili-primary-bg) !important; color: var(--mili-primary-strong) !important; }
 .mili-light aside.mili-lnb nav button.mili-nav-item-active, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active { border-color: var(--mili-primary-border) !important; }
 
+.mili-dark aside.mili-lnb, .mili-dark aside.mili-mobile-lnb {
+  background: var(--mili-sidebar-bg) !important;
+  border-color: transparent !important;
+  color: var(--mili-text);
+}
+
 .mili-nav-item { color: var(--mili-text); }
 .mili-nav-item-active { border-color: var(--mili-primary-border); background: var(--mili-primary-bg); color: var(--mili-primary); }
 .mili-nav-item:hover, .mili-nav-item:focus-visible { border-color: var(--mili-primary-border); background: var(--mili-primary); color: var(--mili-primary-on); }
