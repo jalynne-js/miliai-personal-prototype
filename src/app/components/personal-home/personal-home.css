@@ -222,3 +222,27 @@
 .personal-home.mili-light [class*="text-[#aaff19]"],
 .personal-home.mili-light [class*="text-[#AAFF19]"],
 .personal-home.mili-light [class*="text-[#b4ff39]"] { color: var(--mili-primary) !important; }
+
+/* Home content cards use the portal's square technical frame.  Avatars,
+   status chips, progress tracks and action buttons intentionally keep their
+   own radius for recognition and touch affordance. */
+.personal-home [data-name="Article"],
+.personal-home [data-name="Article"] > *,
+.personal-home [class*="h-[386.398px]"][class*="w-[451.195px]"],
+.personal-home [class*="h-[386.398px]"][class*="w-[451.195px]"] > *,
+.personal-home [class*="flex-[1_0_0]"][class*="rounded-[14px]"],
+.personal-home .personal-mobile-card {
+  border-radius: 0 !important;
+}
+
+/* The recent-project card and the Kim Cheol-su profile card share one surface
+   in both themes, so they read as the same level of dashboard information. */
+.personal-home [data-name="Article"],
+.personal-home [class*="h-[386.398px]"][class*="w-[451.195px]"] {
+  background: var(--mili-surface) !important;
+  border-color: var(--mili-border) !important;
+}
+.personal-home [data-name="Article"] > [class*="bg-[rgba(0,0,0"],
+.personal-home [class*="h-[386.398px]"][class*="w-[451.195px]"] > [class*="bg-[rgba(10,15,8"] {
+  background: var(--mili-surface) !important;
+}
