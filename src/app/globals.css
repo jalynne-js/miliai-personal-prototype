@@ -60,6 +60,9 @@ button:not(.mili-control):hover { border-color: rgb(183 255 49 / 48%); }
   visibility: hidden;
   opacity: 0;
 }
+.mili-app-transition.mili-theme-initializing * {
+  transition: none !important;
+}
 .mili-app-transition.mili-app-leaving {
   opacity: 0;
   pointer-events: none;
