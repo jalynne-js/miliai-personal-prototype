@@ -48,6 +48,7 @@ const portalRoutes = [
   ["my", "posts"],
   ["my", "notifications"],
   ["my", "profile"],
+  ["my", "settings"],
   ["my", "withdraw"],
   ["diagnosis"],
   ["journey"],
