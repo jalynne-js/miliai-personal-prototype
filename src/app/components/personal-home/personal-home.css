@@ -157,15 +157,6 @@
   stroke: #4b504b !important;
 }
 
-.personal-home.mili-light .home-stage-reveal {
-  border: 1px solid #e4e6e1;
-  border-radius: 12px !important;
-  background: rgb(255 255 255 / 82%);
-  box-shadow: 0 8px 24px rgb(29 35 27 / 8%);
-  padding: 8px 10px;
-  backdrop-filter: blur(8px);
-}
-
 .personal-home.mili-light .home-stage-reveal p {
   color: #4b504b !important;
   -webkit-text-fill-color: #4b504b !important;
