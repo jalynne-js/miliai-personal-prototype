@@ -53,8 +53,6 @@ button:disabled { cursor: not-allowed; }
 .mili-nav-item { border: 1px solid transparent; border-radius: 0 !important; color: #fff; }
 .mili-nav-item-active { border-color: rgb(180 255 57 / 32%); background: rgb(180 255 57 / 10%); color: #b4ff39; }
 .mili-nav-item:hover, .mili-nav-item:focus-visible { border-color: #b4ff39; background: #b4ff39; color: #111214; }
-.mili-sidebar-coach { border-radius: 16px !important; }
-.mili-sidebar-coach button { border-radius: 10px !important; }
 .mili-nav-item, .mili-gnb-item { position: relative; transition: color .18s ease, border-color .18s ease, background-color .18s ease, opacity .18s ease; }
 .mili-nav-item::before, .mili-nav-item::after { content: ""; position: absolute; pointer-events: none; width: 13px; height: 13px; opacity: 0; transition: opacity .18s ease; }
 .mili-nav-item::before { left: -1px; top: -1px; border-left: 2px solid #b7ff31; border-top: 2px solid #b7ff31; }
