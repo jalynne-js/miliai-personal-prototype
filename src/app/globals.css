@@ -167,7 +167,19 @@ button:not(.mili-control), a { transition: color .18s ease, border-color .18s ea
 .mili-light aside.mili-lnb, .mili-light aside.mili-mobile-lnb { background: #fff !important; border-color: transparent !important; border-radius: 0 !important; box-shadow: none !important; color: #1b1d1b; }
 .mili-light aside.mili-lnb nav button, .mili-light aside.mili-mobile-lnb nav button { color: #1b1d1b !important; }
 .mili-light aside.mili-lnb nav button.mili-nav-item-active, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active { border-color: transparent !important; background-color: #eff7e7 !important; color: #6d9f17 !important; }
-.mili-light aside.mili-lnb nav button.mili-nav-item-active::before, .mili-light aside.mili-lnb nav button.mili-nav-item-active::after, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active::before, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active::after { opacity: 0 !important; }
+.mili-light aside.mili-lnb nav button.mili-nav-item-active::before, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active::before { opacity: 1 !important; }
+.mili-light aside.mili-lnb nav button.mili-nav-item-active::before, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active::before {
+  background:
+    linear-gradient(var(--mili-primary-border), var(--mili-primary-border)) left top / 14px 2px no-repeat,
+    linear-gradient(var(--mili-primary-border), var(--mili-primary-border)) left top / 2px 14px no-repeat,
+    linear-gradient(var(--mili-primary-border), var(--mili-primary-border)) right top / 14px 2px no-repeat,
+    linear-gradient(var(--mili-primary-border), var(--mili-primary-border)) right top / 2px 14px no-repeat,
+    linear-gradient(var(--mili-primary-border), var(--mili-primary-border)) left bottom / 14px 2px no-repeat,
+    linear-gradient(var(--mili-primary-border), var(--mili-primary-border)) left bottom / 2px 14px no-repeat,
+    linear-gradient(var(--mili-primary-border), var(--mili-primary-border)) right bottom / 14px 2px no-repeat,
+    linear-gradient(var(--mili-primary-border), var(--mili-primary-border)) right bottom / 2px 14px no-repeat;
+}
+.mili-light aside.mili-lnb nav button.mili-nav-item-active::after, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active::after { opacity: 0 !important; }
 .mili-light aside.mili-lnb nav button:hover, .mili-light aside.mili-mobile-lnb nav button:hover { border-color: transparent !important; background-color: #eff7e7 !important; color: #6d9f17 !important; }
 .mili-light aside.mili-lnb img[alt="MiliAI"], .mili-light aside.mili-mobile-lnb img[alt="MiliAI"] { filter: invert(1) !important; }
 .mili-light header { background: transparent !important; border-color: transparent !important; }
@@ -318,8 +330,8 @@ button:not(.mili-control), a { transition: color .18s ease, border-color .18s ea
 }
 
 /* Course content uses one sub-palette per card, never the action lime. */
-.mili-course-card { background: var(--mili-surface) !important; border-color: var(--mili-border) !important; }
-.mili-course-card:hover { background: var(--mili-surface-raised) !important; border-color: var(--mili-border-strong) !important; }
+.mili-course-card { background: var(--mili-surface) !important; border: 0 !important; }
+.mili-course-card:hover { background: var(--mili-surface-raised) !important; }
 .personal-home.mili-dark .mili-home-interaction-overlay { background-color: rgb(0 0 0 / 25%) !important; }
 .personal-home.mili-light .mili-home-interaction-overlay { background-color: rgb(255 255 255 / 38%) !important; }
 .mili-course-header { background: var(--course-header); }

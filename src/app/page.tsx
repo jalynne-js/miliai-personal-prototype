@@ -600,7 +600,7 @@ function PublicCourseCatalog({ openCourse }: { openCourse: (title: string) => vo
     </div>
     <div className="mt-9 flex flex-wrap items-center justify-between gap-4"><div className="flex flex-wrap gap-2">{["전체", "Basic(초급)", "Intermediate(중급)", "Advanced(고급)"].map(item => <button key={item} onClick={() => setLevel(item)} className={`border px-5 py-3 text-sm font-bold ${level === item ? "border-[#b7ff31] bg-[#b7ff31] text-black" : "border-white/15 text-white/58"}`}>{item}</button>)}</div><span className="border border-white/15 px-3 py-2 text-xs text-white/55">최신순</span></div>
     <div className="mt-7 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">{visible.map(course => {
-      return <button key={course.code} data-palette={course.palette} onClick={() => openCourse(course.title)} className="mili-course-card mili-frame flex flex-col overflow-hidden border border-white/10 bg-[#161719] p-0 text-left transition hover:-translate-y-1 hover:border-white/25 hover:bg-[#1a1b1d]">
+      return <button key={course.code} data-palette={course.palette} onClick={() => openCourse(course.title)} className="mili-course-card mili-frame flex flex-col overflow-hidden bg-[#161719] p-0 text-left transition hover:-translate-y-1 hover:bg-[#1a1b1d]">
         <div className="mili-course-header relative flex h-[80px] items-center justify-between px-5">
           <span className="mili-course-bookmark grid size-10 place-items-center bg-[#111216] text-white"><Bookmark size={18} /></span>
           <span className="mili-course-students inline-flex items-center gap-1 bg-[#111216] px-3 py-2 text-xs font-bold text-white"><UserRound size={15} /> {course.students}명 수강중</span>
@@ -608,7 +608,6 @@ function PublicCourseCatalog({ openCourse }: { openCourse: (title: string) => vo
         <div className="flex flex-1 flex-col gap-3 p-5">
           <h2 className="min-h-[52px] text-lg font-semibold leading-[1.35] text-white">{course.title}</h2>
           <p className="min-h-12 text-sm leading-6 text-white/52">{courseDescriptions[course.code]}</p>
-          <div className="flex flex-wrap gap-1.5 text-xs"><span className="mili-course-tag border px-2 py-1">{course.field}</span><span className="mili-course-tag border px-2 py-1">AI</span><span className="mili-course-tag border px-2 py-1">HCP</span></div>
           <dl className="space-y-2 pt-1 text-sm text-[#c8c8cb]"><div className="flex items-center gap-2"><Gauge size={17} className="text-white/45" /><dt>강의레벨</dt><dd className="mili-course-accent font-bold">{course.level}</dd></div><div className="flex items-center gap-2"><Clock3 size={17} className="text-white/45" /><dt>이수시간</dt><dd>{course.time}</dd></div><div className="flex items-center gap-2"><Building2 size={17} className="text-white/45" /><dt>제공기관</dt><dd>MiliAI 교육센터</dd></div><div className="flex items-center gap-2"><BadgeCheck size={17} className="text-white/45" /><dt>수료증</dt><dd>제공</dd></div></dl>
           <div className="mt-auto flex justify-end pt-1"><span className="border border-[var(--mili-primary-border)] px-4 py-2 text-sm font-semibold text-[var(--mili-primary)] transition-colors hover:bg-[var(--mili-primary)] hover:text-[var(--mili-primary-on)]">신청하기</span></div>
         </div>
