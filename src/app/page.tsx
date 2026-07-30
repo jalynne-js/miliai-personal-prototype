@@ -42,6 +42,7 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import PersonalHome from "./components/personal-home/PersonalHome";
+import PersonalMyPage from "./components/personal-my/PersonalMyPage";
 
 type PageKey =
   | "home"
@@ -608,6 +609,7 @@ function RouteContent({ pathname, goTo, openCourse, openProject, isLightMode }: 
   if (pathname === "/community/write") return <CommunityWriteView />;
   if (pathname.startsWith("/community")) return <CommunityView />;
   if (pathname.startsWith("/search")) return <SearchView pathname={pathname} />;
+  if (pathname === "/my") return <PersonalMyPage isLightMode={isLightMode} onGoTo={goTo} />;
   if (pathname.startsWith("/my")) return <MyHubView pathname={pathname} goTo={goTo} openCourse={openCourse} />;
   if (pathname.startsWith("/diagnosis")) return <DiagnosisView goTo={goTo} />;
   if (pathname.startsWith("/journey")) return <JourneyView goTo={goTo} />;
