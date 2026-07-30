@@ -110,8 +110,8 @@ const roadmapSteps = [
 ];
 
 const assetPath = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
-const profileAvatars = ["남자 1 / 20대", "남자 2 / 30대", "남자 3 / 40대", "여자 1 / 20대", "여자 2 / 30대", "여자 3 / 40대", "고양이", "다람쥐", "강아지", "AI 로봇", "여우 드론", "곰 탐사대원", "토끼 사이보그", "초록 외계인"];
-const profileEmojis = ["", "", "", "", "", "", "🐈", "🐿️", "🐕", "🤖", "🦊", "🐻", "🐰", "👽"];
+const profileAvatars = ["남자 1", "남자 2", "남자 3", "여자 1", "여자 2", "여자 3", "고양이", "다람쥐", "강아지", "AI 로봇", "여우", "곰"];
+const profileEmojis = ["", "", "", "", "", "", "", "", "", "", "", ""];
 function useProfileAvatar() { const [selected, setSelected] = useState(() => typeof window === "undefined" ? 0 : Number(window.localStorage.getItem("mili-profile-avatar") ?? 0)); const choose = (index: number) => { setSelected(index); window.localStorage.setItem("mili-profile-avatar", String(index)); }; return [selected, choose] as const; }
 
 function ActionButton({ children, onClick, subtle = false, fullWidth = false }: { children: React.ReactNode; onClick?: () => void; subtle?: boolean; fullWidth?: boolean }) {
@@ -168,7 +168,7 @@ function HomeView({ goTo, isLightMode }: { goTo: (page: PageKey) => void; isLigh
   ];
   const [rankStep, setRankStep] = useState(0);
   const rankings = rankSnapshots[rankStep];
-  return <div className="mili-home-layout space-y-5 pb-4"><HomeProfileAvatar />
+  return <div className="mili-home-layout space-y-5 pb-4">
     <section className="relative min-h-[390px] px-7 pb-8 pt-7 md:px-12 lg:min-h-[510px] lg:pt-[4.75rem]">
       <div className="relative z-10 max-w-[650px]">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#b7ff31]">학습 미션 맵</p>
