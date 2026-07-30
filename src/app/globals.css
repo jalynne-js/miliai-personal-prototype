@@ -1,13 +1,38 @@
 @import "tailwindcss";
 
-:root { color-scheme: dark; }
+:root {
+  color-scheme: dark;
+  --mili-app-bg: #0E1013;
+  --mili-sidebar-bg: #090A0C;
+  --mili-surface: #15181C;
+  --mili-surface-raised: #1E2227;
+  --mili-surface-interactive: #2B3036;
+  --mili-text: #F8F9FA;
+  --mili-text-secondary: #ADB5BD;
+  --mili-text-muted: #868E96;
+  --mili-border: #2B3036;
+  --mili-border-strong: #3F454C;
+  --mili-primary: #B4FF39;
+  --mili-primary-strong: #C7FF68;
+  --mili-primary-bg: #2D4511;
+  --mili-primary-border: #79AB25;
+  --mili-primary-on: #18210E;
+  --mili-info: #62B6F5;
+  --mili-info-bg: #102E44;
+  --mili-success: #63D392;
+  --mili-success-bg: #163725;
+  --mili-warning: #F6B84A;
+  --mili-warning-bg: #3C2A0B;
+  --mili-error: #FF8790;
+  --mili-error-bg: #421C22;
+}
 * { box-sizing: border-box; }
-html { background: #050806; scroll-behavior: smooth; }
-body { margin: 0; min-width: 320px; background: #050806; color: #f4f7f4; font-family: Arial, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-html[data-mili-theme="light"] { color-scheme: light; background: #edf1ec; }
-html[data-mili-theme="light"] body { background: #edf1ec; color: #1b1d1b; }
-html[data-mili-theme="dark"] { color-scheme: dark; background: #050806; }
-html[data-mili-theme="dark"] body { background: #050806; color: #f4f7f4; }
+html { background: var(--mili-app-bg); scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; background: var(--mili-app-bg); color: var(--mili-text); font-family: Arial, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+html[data-mili-theme="light"] { color-scheme: light; background: #F8F9FA; }
+html[data-mili-theme="light"] body { background: #F8F9FA; color: #1E2227; }
+html[data-mili-theme="dark"] { color-scheme: dark; background: #0E1013; }
+html[data-mili-theme="dark"] body { background: #0E1013; color: #F8F9FA; }
 button, input { font: inherit; }
 button { cursor: pointer; }
 button:disabled { cursor: not-allowed; }
@@ -23,13 +48,11 @@ button:disabled { cursor: not-allowed; }
 .mili-course-bookmark { border-radius: 9999px !important; }
 .mili-course-students { border-radius: 9999px !important; }
 .mili-hover-target { position: relative; }
-.mili-lnb, .mili-mobile-lnb { border-radius: 0 32px 32px 0 !important; overflow: hidden; }
+.mili-lnb, .mili-mobile-lnb { border-radius: 0 !important; overflow: hidden; }
 .mili-lnb { box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%) !important; }
 .mili-nav-item { border: 1px solid transparent; border-radius: 0 !important; color: #fff; }
 .mili-nav-item-active { border-color: rgb(180 255 57 / 32%); background: rgb(180 255 57 / 10%); color: #b4ff39; }
 .mili-nav-item:hover, .mili-nav-item:focus-visible { border-color: #b4ff39; background: #b4ff39; color: #111214; }
-.mili-sidebar-coach { border-radius: 16px !important; }
-.mili-sidebar-coach button { border-radius: 10px !important; }
 .mili-nav-item, .mili-gnb-item { position: relative; transition: color .18s ease, border-color .18s ease, background-color .18s ease, opacity .18s ease; }
 .mili-nav-item::before, .mili-nav-item::after { content: ""; position: absolute; pointer-events: none; width: 13px; height: 13px; opacity: 0; transition: opacity .18s ease; }
 .mili-nav-item::before { left: -1px; top: -1px; border-left: 2px solid #b7ff31; border-top: 2px solid #b7ff31; }
@@ -178,3 +201,144 @@ button:not(.mili-control), a { transition: color .18s ease, border-color .18s ea
   .mili-home-layout > section { min-height: 0; flex: 1; }
   .mili-home-layout > .grid:not(.hidden) { flex-shrink: 0; }
 }
+
+/* MILI AI Color System v1.0 -------------------------------------------------
+   The portal was originally assembled with view-level Tailwind colors.  These
+   theme-level mappings keep those views consistent while the shared semantic
+   tokens below remain the single source of truth for both themes. */
+.mili-dark {
+  color: var(--mili-text);
+  background: var(--mili-app-bg);
+}
+.mili-dark .mili-frame {
+  background-color: var(--mili-surface) !important;
+  border-color: var(--mili-border) !important;
+  box-shadow: 0 14px 34px rgb(0 0 0 / 22%);
+}
+.mili-dark [class*="bg-[#050806]"],
+.mili-dark [class*="bg-[#070b08]"],
+.mili-dark [class*="bg-[#090e0a]"] { background-color: var(--mili-app-bg) !important; }
+.mili-dark [class*="bg-[#0b110d]"],
+.mili-dark [class*="bg-[#101610]"],
+.mili-dark [class*="bg-[#141515]"] { background-color: var(--mili-surface) !important; }
+.mili-dark [class*="bg-[#161719]"],
+.mili-dark [class*="bg-[#1a1b1d]"],
+.mili-dark [class*="bg-[#111216]"] { background-color: var(--mili-surface-raised) !important; }
+.mili-dark [class*="bg-black/"] { background-color: var(--mili-app-bg) !important; }
+.mili-dark [class*="border-[#273128]"],
+.mili-dark [class*="border-white/"] { border-color: var(--mili-border) !important; }
+.mili-dark [class*="text-white/"] { color: var(--mili-text-secondary) !important; }
+.mili-dark [class*="text-white"], .mili-dark [class*="text-[#c8c8cb]"] { color: var(--mili-text) !important; }
+
+/* Lime is intentionally limited to immediate action, selection and progress. */
+.mili-dark [class*="text-[#b7ff31]"], .mili-dark [class*="text-[#b4ff39]"], .mili-dark [class*="text-[#aaff19]"] { color: var(--mili-primary) !important; }
+.mili-dark [class*="bg-[#b7ff31]"], .mili-dark [class*="bg-[#b4ff39]"], .mili-dark [class*="bg-[#aaff19]"] { background-color: var(--mili-primary) !important; color: var(--mili-primary-on) !important; }
+.mili-dark [class*="border-[#b7ff31]"], .mili-dark [class*="border-[#b4ff39]"], .mili-dark [class*="border-[#aaff19]"] { border-color: var(--mili-primary-border) !important; }
+.mili-dark [class*="text-[#54c7ff]"], .mili-dark [class*="text-[#51a2ff]"] { color: var(--mili-info) !important; }
+.mili-dark [class*="bg-[#54c7ff]/"], .mili-dark [class*="bg-[#51a2ff]/"] { background-color: var(--mili-info-bg) !important; }
+.mili-dark [class*="text-[#4ed58a]"] { color: var(--mili-success) !important; }
+.mili-dark [class*="bg-[#4ed58a]/"] { background-color: var(--mili-success-bg) !important; }
+.mili-dark [class*="text-[#ffb84d]"], .mili-dark [class*="text-[#ff8904]"] { color: var(--mili-warning) !important; }
+.mili-dark [class*="bg-[#ffb84d]/"], .mili-dark [class*="bg-[#ff8904]/"] { background-color: var(--mili-warning-bg) !important; }
+
+.mili-light {
+  --mili-app-bg: #F8F9FA;
+  --mili-sidebar-bg: #FFFFFF;
+  --mili-surface: #FFFFFF;
+  --mili-surface-raised: #FFFFFF;
+  --mili-surface-interactive: #F1F3F5;
+  --mili-text: #1E2227;
+  --mili-text-secondary: #5C636B;
+  --mili-text-muted: #868E96;
+  --mili-border: #DEE2E6;
+  --mili-border-strong: #CED4DA;
+  --mili-primary: #618F20;
+  --mili-primary-strong: #4D731B;
+  --mili-primary-bg: #E8F8C8;
+  --mili-primary-border: #94C83A;
+  --mili-primary-on: #FFFFFF;
+  --mili-info: #1B6DA8;
+  --mili-info-bg: #EFF8FF;
+  --mili-success: #237A4B;
+  --mili-success-bg: #EAF7EF;
+  --mili-warning: #A96A08;
+  --mili-warning-bg: #FFF6E5;
+  --mili-error: #BA3B45;
+  --mili-error-bg: #FFF0F1;
+  color: var(--mili-text);
+  background: var(--mili-app-bg);
+}
+.mili-light .mili-frame { background-color: var(--mili-surface) !important; border-color: var(--mili-border) !important; box-shadow: 0 10px 24px rgb(30 34 39 / 5%); }
+.mili-light [class*="bg-[#050806]"], .mili-light [class*="bg-[#070b08]"], .mili-light [class*="bg-[#090e0a]"], .mili-light [class*="bg-black/"] { background-color: var(--mili-app-bg) !important; }
+.mili-light [class*="bg-[#0b110d]"], .mili-light [class*="bg-[#101610]"], .mili-light [class*="bg-[#141515]"], .mili-light [class*="bg-[#161719]"], .mili-light [class*="bg-[#1a1b1d]"], .mili-light [class*="bg-[#111216]"] { background-color: var(--mili-surface) !important; }
+.mili-light [class*="border-white/"], .mili-light [class*="border-[#273128]"] { border-color: var(--mili-border) !important; }
+.mili-light [class*="text-white"], .mili-light [class*="text-black"], .mili-light [class*="text-[#c8c8cb]"] { color: var(--mili-text) !important; }
+.mili-light [class*="text-white/"] { color: var(--mili-text-secondary) !important; }
+.mili-light [class*="text-[#b7ff31]"], .mili-light [class*="text-[#b4ff39]"], .mili-light [class*="text-[#aaff19]"] { color: var(--mili-primary) !important; }
+.mili-light [class*="bg-[#b7ff31]"], .mili-light [class*="bg-[#b4ff39]"], .mili-light [class*="bg-[#aaff19]"] { background-color: var(--mili-primary) !important; color: var(--mili-primary-on) !important; }
+.mili-light [class*="border-[#b7ff31]"], .mili-light [class*="border-[#b4ff39]"], .mili-light [class*="border-[#aaff19]"] { border-color: var(--mili-primary-border) !important; }
+.mili-light [class*="text-[#54c7ff]"], .mili-light [class*="text-[#51a2ff]"] { color: var(--mili-info) !important; }
+.mili-light [class*="bg-[#54c7ff]/"], .mili-light [class*="bg-[#51a2ff]/"] { background-color: var(--mili-info-bg) !important; }
+.mili-light [class*="text-[#4ed58a]"] { color: var(--mili-success) !important; }
+.mili-light [class*="bg-[#4ed58a]/"] { background-color: var(--mili-success-bg) !important; }
+.mili-light [class*="text-[#ffb84d]"], .mili-light [class*="text-[#ff8904]"] { color: var(--mili-warning) !important; }
+.mili-light [class*="bg-[#ffb84d]/"], .mili-light [class*="bg-[#ff8904]/"] { background-color: var(--mili-warning-bg) !important; }
+
+.mili-light aside.mili-lnb, .mili-light aside.mili-mobile-lnb { background: var(--mili-sidebar-bg) !important; }
+.mili-light aside.mili-lnb nav button.mili-nav-item-active, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active,
+.mili-light aside.mili-lnb nav button:hover, .mili-light aside.mili-mobile-lnb nav button:hover { background-color: var(--mili-primary-bg) !important; color: var(--mili-primary-strong) !important; }
+.mili-light aside.mili-lnb nav button.mili-nav-item-active, .mili-light aside.mili-mobile-lnb nav button.mili-nav-item-active { border-color: var(--mili-primary-border) !important; }
+
+.mili-dark aside.mili-lnb, .mili-dark aside.mili-mobile-lnb {
+  background: var(--mili-sidebar-bg) !important;
+  border-color: transparent !important;
+  color: var(--mili-text);
+}
+
+.mili-nav-item { color: var(--mili-text); }
+.mili-nav-item-active { border-color: var(--mili-primary-border); background: var(--mili-primary-bg); color: var(--mili-primary); }
+.mili-nav-item:hover, .mili-nav-item:focus-visible { border-color: var(--mili-primary-border); background: var(--mili-primary); color: var(--mili-primary-on); }
+.mili-nav-item:focus-visible, .mili-gnb-item:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--mili-primary-strong); outline-offset: 2px; }
+
+/* The home controls need a quiet backdrop over the live pixel interaction. */
+.mili-dark .mili-home-header {
+  background: linear-gradient(to bottom, rgb(9 10 12 / 86%) 0%, rgb(9 10 12 / 56%) 55%, transparent 100%) !important;
+  border-bottom: 1px solid rgb(43 48 54 / 52%);
+}
+.mili-page-header {
+  background: var(--mili-app-bg) !important;
+  border-bottom: 1px solid var(--mili-border);
+}
+.mili-light .mili-page-header {
+  background: #FFFFFF !important;
+}
+.mili-light .mili-home-header {
+  background: linear-gradient(to bottom, rgb(255 255 255 / 92%) 0%, rgb(255 255 255 / 66%) 55%, transparent 100%) !important;
+  border-bottom: 1px solid rgb(222 226 230 / 74%);
+}
+
+/* Course content uses one sub-palette per card, never the action lime. */
+.mili-course-card { background: var(--mili-surface) !important; border-color: var(--mili-border) !important; }
+.mili-course-card:hover { background: var(--mili-surface-raised) !important; border-color: var(--mili-border-strong) !important; }
+.personal-home.mili-dark .mili-home-interaction-overlay { background-color: rgb(0 0 0 / 25%) !important; }
+.personal-home.mili-light .mili-home-interaction-overlay { background-color: rgb(255 255 255 / 38%) !important; }
+.mili-course-header { background: var(--course-header); }
+.mili-course-detail-hero { background: var(--course-header) !important; border-color: color-mix(in srgb, var(--course-accent) 55%, var(--mili-border)) !important; }
+.mili-course-accent { color: var(--course-accent) !important; }
+.mili-course-tag { border-color: color-mix(in srgb, var(--course-accent) 40%, transparent) !important; background: color-mix(in srgb, var(--course-accent) 14%, transparent) !important; color: var(--course-accent) !important; }
+[data-palette="ocean"] { --course-accent: #1B6DA8; --course-header: #1B6DA8; }
+[data-palette="sky"] { --course-accent: #0B759F; --course-header: #0B759F; }
+[data-palette="violet"] { --course-accent: #5D3D9D; --course-header: #5D3D9D; }
+[data-palette="plum"] { --course-accent: #823671; --course-header: #823671; }
+[data-palette="coral"] { --course-accent: #A23E31; --course-header: #A23E31; }
+[data-palette="amber"] { --course-accent: #935B1B; --course-header: #935B1B; }
+[data-palette="teal"] { --course-accent: #19756D; --course-header: #19756D; }
+[data-palette="rose"] { --course-accent: #923852; --course-header: #923852; }
+.mili-dark [data-palette="ocean"] { --course-accent: #62B6F5; --course-header: #1B6DA8; }
+.mili-dark [data-palette="sky"] { --course-accent: #59C1F2; --course-header: #0B759F; }
+.mili-dark [data-palette="violet"] { --course-accent: #AA83F2; --course-header: #5D3D9D; }
+.mili-dark [data-palette="plum"] { --course-accent: #D878BD; --course-header: #823671; }
+.mili-dark [data-palette="coral"] { --course-accent: #F68168; --course-header: #A23E31; }
+.mili-dark [data-palette="amber"] { --course-accent: #E8AC45; --course-header: #935B1B; }
+.mili-dark [data-palette="teal"] { --course-accent: #4FC5B5; --course-header: #19756D; }
+.mili-dark [data-palette="rose"] { --course-accent: #E87894; --course-header: #923852; }
