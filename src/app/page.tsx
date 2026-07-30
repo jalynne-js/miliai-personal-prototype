@@ -127,12 +127,12 @@ function ActionButton({ children, onClick, subtle = false, fullWidth = false }: 
 }
 
 function Panel({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <section className={`mili-frame rounded-2xl border border-[#273128] bg-[#0b110d]/95 ${className}`}>{children}</section>;
+  return <section className={`mili-entry-card mili-frame rounded-2xl border border-[#273128] bg-[#0b110d]/95 ${className}`}>{children}</section>;
 }
 
 function PageHeading({ eyebrow, title, copy, aside }: { eyebrow: string; title: string; copy: string; aside?: React.ReactNode }) {
   return (
-    <div className="mb-7 flex flex-col gap-4 border-b border-white/10 pb-6 md:flex-row md:items-end md:justify-between">
+    <div className="mili-entry-heading mb-7 flex flex-col gap-4 border-b border-white/10 pb-6 md:flex-row md:items-end md:justify-between">
       <div>
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#b7ff31]">{eyebrow}</p>
         <h1 className="mt-3 text-3xl font-bold tracking-[-0.045em] text-white md:text-4xl">{title}</h1>
@@ -672,6 +672,7 @@ export default function HomePage() {
   const [isSceneFading, setIsSceneFading] = useState(false);
   const pendingPathRef = useRef<string | null>(null);
   const transitionTimerRef = useRef<number | null>(null);
+  const pageContentRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     setIsLightMode(document.documentElement.dataset.miliTheme === "light");
     setIsThemeReady(true);
@@ -719,6 +720,28 @@ export default function HomePage() {
     });
     return () => window.cancelAnimationFrame(frame);
   }, [pathname]);
+  useLayoutEffect(() => {
+    if (activePage === "home") return;
+    const root = pageContentRef.current;
+    if (!root) return;
+
+    const targets = [
+      root.querySelector<HTMLElement>(".mili-entry-heading"),
+      ...Array.from(root.querySelectorAll<HTMLElement>(".mili-entry-card, button.group, .mili-entry-page > section, .mili-entry-page > section > article")),
+    ].filter((element): element is HTMLElement => Boolean(element));
+
+    targets.forEach((element, index) => {
+      element.classList.add("mili-page-card-reveal");
+      element.style.setProperty("--mili-entry-delay", `${80 + Math.min(index, 8) * 70}ms`);
+    });
+
+    return () => {
+      targets.forEach((element) => {
+        element.classList.remove("mili-page-card-reveal");
+        element.style.removeProperty("--mili-entry-delay");
+      });
+    };
+  }, [activePage, pathname]);
   const handleInternalNavigation = (event: MouseEvent<HTMLElement>) => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     const target = event.target;
@@ -747,7 +770,7 @@ export default function HomePage() {
 
 
     {mobileOpen && <div className="fixed inset-0 z-50 bg-black/70 lg:hidden"><aside className="h-full w-[280px] border-r border-white/10 bg-[#090e0a] p-4 shadow-2xl"><div className="flex items-center justify-between px-2 py-4"><button type="button" onClick={reloadHome} aria-label="홈 새로고침" className="text-left"><Image src={assetPath("/assets/mili-logo.png")} alt="MiliAI" width={112} height={41} className="h-auto w-[112px]" /></button><button onClick={() => setMobileOpen(false)} aria-label="메뉴 닫기"><X /></button></div><nav className="mt-5 space-y-1">{navigation.map(item => { const Icon = item.icon; return <button key={item.key} onClick={() => goTo(item.key)} className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-bold ${activePage === item.key ? "bg-[#b7ff31] text-black" : "text-white/65"}`}><Icon size={18} />{item.label}</button>})}</nav></aside></div>}
-    <div key={pathname} className={activePage === "home"
+    <div ref={pageContentRef} key={pathname} className={activePage === "home"
       ? "relative z-10 h-screen overflow-y-auto lg:ml-[262px] xl:overflow-hidden"
       : "relative z-10 w-full px-5 py-7 lg:ml-[262px] lg:w-[calc(100%-262px)] lg:px-8 lg:py-10"
     }>{activePage === "home" ? pageContent : <div className="mx-auto w-full max-w-[1180px]">{pageContent}</div>}</div>
