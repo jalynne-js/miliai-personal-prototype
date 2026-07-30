@@ -4,6 +4,10 @@
 * { box-sizing: border-box; }
 html { background: #050806; scroll-behavior: smooth; }
 body { margin: 0; min-width: 320px; background: #050806; color: #f4f7f4; font-family: Arial, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+html[data-mili-theme="light"] { color-scheme: light; background: #edf1ec; }
+html[data-mili-theme="light"] body { background: #edf1ec; color: #1b1d1b; }
+html[data-mili-theme="dark"] { color-scheme: dark; background: #050806; }
+html[data-mili-theme="dark"] body { background: #050806; color: #f4f7f4; }
 button, input { font: inherit; }
 button { cursor: pointer; }
 button:disabled { cursor: not-allowed; }
@@ -45,23 +49,25 @@ button:not(.mili-control), a { transition: color .18s ease, border-color .18s ea
 @keyframes mili-reward-item { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes mili-reward-scan { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
 
-/* Same entrance rhythm as the personal prototype: a soft upward fade, then
-   a short stagger for the content groups on each newly opened page. */
-@keyframes mili-page-card-reveal {
-  from { opacity: 0; transform: translateY(18px) scale(.985); filter: blur(5px); }
-  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+/* Keep the whole app shell together during navigation so the sidebar, header,
+   and page body fade as one scene instead of swapping independently. */
+.mili-app-transition {
+  opacity: 1;
+  transition: opacity 170ms ease-out;
+  will-change: opacity;
 }
-.mili-page-reveal > * {
+.mili-app-transition.mili-theme-pending {
+  visibility: hidden;
+}
+.mili-app-transition.mili-theme-initializing * {
+  transition: none !important;
+}
+.mili-app-transition.mili-app-leaving {
   opacity: 0;
-  animation: mili-page-card-reveal 560ms cubic-bezier(.22, 1, .36, 1) 160ms forwards;
-  will-change: transform, opacity, filter;
+  pointer-events: none;
 }
-.mili-page-reveal > :nth-child(2) { animation-delay: 230ms; }
-.mili-page-reveal > :nth-child(3) { animation-delay: 300ms; }
-.mili-page-reveal > :nth-child(4) { animation-delay: 370ms; }
-.mili-page-reveal > :nth-child(n + 5) { animation-delay: 440ms; }
 
-@media (prefers-reduced-motion: reduce) { .mili-reward-scan, .mili-reward-modal, .mili-complete-stage::after, .mili-mission-complete, .mili-reward-item, .mili-page-reveal > * { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; } }
+@media (prefers-reduced-motion: reduce) { .mili-reward-scan, .mili-reward-modal, .mili-complete-stage::after, .mili-mission-complete, .mili-reward-item { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; } .mili-app-transition { transition: none !important; } }
 
 /* Light mode / 2026-07-29 dashboard reference: warm off-white canvas, white surfaces, lime signal. */
 .mili-light { color-scheme: light; color: #1b1d1b; }
