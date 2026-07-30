@@ -605,7 +605,7 @@ function PublicCourseCatalog({ openCourse }: { openCourse: (title: string) => vo
       <label className="mx-auto mt-9 flex max-w-xl border border-white/15 bg-black/25 p-1"><Search className="m-3 text-white/45" /><input value={query} onChange={event => setQuery(event.target.value)} placeholder="강의명, 과정코드로 검색" className="h-11 min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/35" /></label>
     </div>
     <div className="mt-9 flex flex-wrap items-center justify-between gap-4"><div className="flex flex-wrap gap-2">{["전체", "Basic(초급)", "Intermediate(중급)", "Advanced(고급)"].map(item => <button key={item} onClick={() => setLevel(item)} className={`border px-5 py-3 text-sm font-bold ${level === item ? "border-[#b7ff31] bg-[#b7ff31] text-black" : "border-white/15 text-white/58"}`}>{item}</button>)}</div><span className="border border-white/15 px-3 py-2 text-xs text-white/55">최신순</span></div>
-    <div className="mt-7 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">{visible.map(course => {
+    <div className="mt-7 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">{visible.map(course => {
       const accent = courseAccent(course.level);
       return <button key={course.code} onClick={() => openCourse(course.title)} className="mili-course-card mili-frame flex flex-col overflow-hidden border border-white/10 bg-[#161719] p-0 text-left transition hover:-translate-y-1 hover:border-white/25 hover:bg-[#1a1b1d]">
         <div className="relative flex h-[80px] items-center justify-between px-5" style={{ backgroundColor: accent }}>
