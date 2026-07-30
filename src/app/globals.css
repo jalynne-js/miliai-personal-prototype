@@ -85,7 +85,8 @@ button:not(.mili-control), a { transition: color .18s ease, border-color .18s ea
 .mili-reward-corner-tr { right: -1px; top: -1px; border-right: 5px solid; border-top: 5px solid; }
 .mili-reward-corner-bl { bottom: -1px; left: -1px; border-bottom: 5px solid; border-left: 5px solid; }
 .mili-reward-corner-br { right: -1px; bottom: -1px; border-bottom: 5px solid; border-right: 5px solid; }
-.mili-report-label { display: flex; align-items: center; justify-content: center; gap: 14px; color: #b7ff31; font-size: 12px; font-weight: 800; letter-spacing: .18em; }
+.mili-report-label { display: flex; align-items: center; justify-content: center; gap: 14px; color: #b7ff31; font-size: 12px; font-weight: 800; letter-spacing: normal; }
+.tracking-\[0\.2em\], .tracking-\[0\.17em\], .tracking-\[0\.16em\], .tracking-\[0\.18em\], .tracking-\[0\.24em\], .tracking-\[\.24em\], .tracking-\[\.18em\], .tracking-\[\.16em\] { letter-spacing: normal !important; }
 .mili-report-label span { width: 48px; height: 1px; background: #b7ff31; box-shadow: 0 0 8px rgb(183 255 49 / 70%); }
 .mili-complete-stage { position: relative; overflow: hidden; border-top: 1px solid rgb(183 255 49 / 45%); border-bottom: 1px solid rgb(183 255 49 / 45%); background: radial-gradient(ellipse at center, rgb(183 255 49 / 11%), transparent 68%); }
 .mili-complete-stage::after { content: ""; position: absolute; inset: 0; transform: translateX(-120%); background: linear-gradient(90deg, transparent, rgb(255 255 255 / 28%), transparent); animation: mili-title-scan 1.5s .25s ease-out both; }
