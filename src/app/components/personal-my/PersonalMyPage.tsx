@@ -17,27 +17,28 @@ import {
 type PersonalMyPageProps = {
   isLightMode: boolean;
   onGoTo: (page: "courses" | "projects" | "diagnosis") => void;
+  onOpenLearning: () => void;
 };
 
 const shortcuts = [
   { label: "내 학습", icon: BookOpen, href: "/my/learning" },
   { label: "보관함", icon: FolderKanban, href: "/my/wishlist" },
-  { label: "수료증 (0)", icon: GraduationCap, href: "/my/certificates" },
+  { label: "수료증 (4)", icon: GraduationCap, href: "/my/certificates" },
   { label: "크레딧", icon: Medal, href: "/my/credits" },
-  { label: "팀 프로젝트", icon: FolderKanban, href: "/projects" },
+  { label: "팀 프로젝트", icon: FolderKanban, href: "/team-projects" },
   { label: "작성한 글 (0)", icon: ClipboardList, href: "/my/posts" },
   { label: "알림", icon: Bell, href: "/my/notifications" },
   { label: "계정 설정", icon: Settings, href: "/my/settings" },
 ];
 
-export default function PersonalMyPage({ isLightMode, onGoTo }: PersonalMyPageProps) {
+export default function PersonalMyPage({ isLightMode, onGoTo, onOpenLearning }: PersonalMyPageProps) {
   const text = isLightMode ? "text-[#1f2820]" : "text-white";
   const muted = isLightMode ? "text-[#737c73]" : "text-white/45";
   const surface = isLightMode ? "border-slate-200 bg-white" : "border-white/[0.08] bg-[#141515]";
   const inset = isLightMode ? "border-slate-200 bg-[#f6f8f6]" : "border-white/[0.07] bg-white/[0.025]";
   const stats = [
-    ["3", "수강 중 VOD"], ["0", "완료된 VOD"], ["1", "PBL 프로젝트"],
-    ["0.0%", "평균 진도율"], ["0", "수료증"], ["5", "보유 크레딧"],
+    ["10", "수강 중 VOD"], ["4", "완료된 VOD"], ["3", "PBL 프로젝트"],
+    ["42.0%", "평균 진도율"], ["4", "수료증"], ["125", "보유 크레딧"],
   ];
 
   return <div className="mx-auto max-w-[960px] pb-10">
@@ -66,7 +67,7 @@ export default function PersonalMyPage({ isLightMode, onGoTo }: PersonalMyPagePr
     </section>
 
     <section className="mt-5 grid gap-4 md:grid-cols-2">
-      <article className={`border p-5 ${surface} rounded-2xl`}><div className="flex items-center justify-between"><h2 className={`text-[15px] font-bold ${text}`}>이어서 학습하기</h2><button onClick={() => onGoTo("courses")} className="text-xs font-semibold text-[#aaff19]">전체 보기 <ArrowRight className="inline size-3" /></button></div><div className={`mt-4 border p-4 ${inset} rounded-xl`}><div className="flex items-center gap-2"><span className="rounded-md bg-[#aaff19]/10 px-2 py-0.5 text-[10px] font-bold text-[#aaff19]">진행 중</span><span className={"text-[10px] " + muted}>MY PROJECT</span></div><h3 className={`mt-3 text-sm font-semibold ${text}`}>체력 기록 관리 시스템</h3><p className={`mt-1 text-[11px] ${muted}`}>3일차 · 여러 기록 목록 관리하기</p><div className="mt-4 flex justify-between text-[10px]"><span className={muted}>진행률</span><b className={text}>38%</b></div><div className={`mt-1.5 h-1.5 overflow-hidden rounded-full ${isLightMode ? "bg-slate-200" : "bg-white/10"}`}><i className="block h-full w-[38%] rounded-full bg-[#aaff19]" /></div><button onClick={() => onGoTo("projects")} className="mt-4 w-full rounded-xl border border-[#aaff19]/25 bg-[#aaff19]/10 py-2 text-xs font-bold text-[#aaff19] hover:bg-[#aaff19]/15">이어서 학습하기 <ArrowRight className="inline size-3.5" /></button></div></article>
+      <article className={`border p-5 ${surface} rounded-2xl`}><div className="flex items-center justify-between"><h2 className={`text-[15px] font-bold ${text}`}>이어서 학습하기</h2><button onClick={onOpenLearning} className="text-xs font-semibold text-[#aaff19]">전체 보기 <ArrowRight className="inline size-3" /></button></div><div className={`mt-4 border p-4 ${inset} rounded-xl`}><div className="flex items-center gap-2"><span className="rounded-md bg-[#aaff19]/10 px-2 py-0.5 text-[10px] font-bold text-[#aaff19]">진행 중</span><span className={"text-[10px] " + muted}>MY PROJECT</span></div><h3 className={`mt-3 text-sm font-semibold ${text}`}>체력 기록 관리 시스템</h3><p className={`mt-1 text-[11px] ${muted}`}>3일차 · 여러 기록 목록 관리하기</p><div className="mt-4 flex justify-between text-[10px]"><span className={muted}>진행률</span><b className={text}>38%</b></div><div className={`mt-1.5 h-1.5 overflow-hidden rounded-full ${isLightMode ? "bg-slate-200" : "bg-white/10"}`}><i className="block h-full w-[38%] rounded-full bg-[#aaff19]" /></div><button onClick={() => onGoTo("projects")} className="mt-4 w-full rounded-xl border border-[#aaff19]/25 bg-[#aaff19]/10 py-2 text-xs font-bold text-[#aaff19] hover:bg-[#aaff19]/15">이어서 학습하기 <ArrowRight className="inline size-3.5" /></button></div></article>
       <article className={`border p-5 ${surface} rounded-2xl`}><div className="flex items-center justify-between"><h2 className={`text-[15px] font-bold ${text}`}>나의 역량 분석</h2><button onClick={() => onGoTo("diagnosis")} className="text-xs font-semibold text-[#aaff19]">진단하기 <ArrowRight className="inline size-3" /></button></div><div className="flex min-h-[190px] flex-col items-center justify-center text-center"><span className="grid size-16 place-items-center rounded-full border border-[#aaff19]/20 bg-[#aaff19]/[0.04] text-[#aaff19]"><BrainCircuit size={26} /></span><p className={`mt-4 text-[13px] ${muted}`}>진단평가를 실시하면 역량 지표가 표시됩니다.</p><button onClick={() => onGoTo("diagnosis")} className="mt-2 text-xs font-semibold text-[#aaff19]">진단평가 실시하기 <ArrowRight className="inline size-3" /></button></div></article>
     </section>
 
